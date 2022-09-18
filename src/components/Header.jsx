@@ -3,7 +3,6 @@ import {
     Navbar,
     MobileNav,
     Typography,
-    // Button,
     IconButton,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
@@ -142,7 +141,7 @@ const Header = () => {
         <Navbar className="py-2 lg:py-4">
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                 <Typography
-                    as="a"
+                    as="li"
                     variant="small"
                     className="mr-4 cursor-pointer py-1.5 font-normal"
                 >

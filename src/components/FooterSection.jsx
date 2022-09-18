@@ -15,30 +15,27 @@ const FooterSection = () => {
                                 href="https://flowbite.com"
                                 src="https://flowbite.com/docs/images/logo.svg"
                                 alt="Flowbite Logo"
-                                name="Flowbite"
+                                name="Real Estate Agency"
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                             <div>
                                 <Footer.Title title="Links" />
                                 <Footer.LinkGroup col={true}>
-                                    <Footer.Link>
-                                        <Link to="/about" className="hover:text-blue-700">About us</Link>
-                                    </Footer.Link>
-                                    <Footer.Link>
-                                        <Link to="" className="hover:text-blue-700">Contact us</Link>
-                                    </Footer.Link>
+                                    <Link to="/about" className="hover:text-blue-700">About us</Link>
+                                    <Link to="" className="hover:text-blue-700">Contact us</Link>
                                 </Footer.LinkGroup>
                             </div>
                             <div>
                                 <Footer.Title title="Legal" />
                                 <Footer.LinkGroup col={true}>
-                                    <Footer.Link>
+                                    <Link to="#">
                                         Privacy Policy
-                                    </Footer.Link>
-                                    <Footer.Link>
+                                    </Link>
+                                    <Link to="#">
                                         Terms & Conditions
-                                    </Footer.Link>
+                                    </Link>
+
                                 </Footer.LinkGroup>
                             </div>
                         </div>
