@@ -76,7 +76,7 @@ const PropertItem = () => {
                 <Table.Body className="divide-y">
                     {properties && !properties.length ? (
                         <EmptyCategory />
-                    ) : (properties.map((property, index) => {
+                    ) : (properties && properties.map((property, index) => {
                         return (
                             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
