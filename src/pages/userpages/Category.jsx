@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Breadcrumb, Select, Label, Pagination } from "flowbite-react";
+import { Breadcrumb, Pagination } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import { Link, useParams } from "react-router-dom";
 import CategoryItem from "../../components/CategoryItem";
@@ -37,7 +37,7 @@ const Category = () => {
                     <div className="text-center">
                         <h5 className="pb-8">{category} in Kenya</h5>
                     </div>
-                    <div className="flex justify-between items-center">
+                    {/* <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center w-full">
                             <Label htmlFor="sort" value="Sort by" />
                             <div className="w-1/2">
@@ -64,7 +64,7 @@ const Category = () => {
                                 </Select>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div>
                         {categoryItems && !categoryItems.length ? (
                             <EmptyCategory />
