@@ -71,7 +71,7 @@ const SubCategory = () => {
                         </div>
                     </div>
                     <div>
-                        {!subCategoryItems.length ? (
+                        {subCategoryItems && !subCategoryItems.length ? (
                             <EmptyCategory />
                         ) : (subCategoryItems.map((item, index) =>
                             <CategoryItem key={index} catItem={item} />

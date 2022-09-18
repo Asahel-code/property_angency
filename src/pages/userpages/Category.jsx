@@ -66,7 +66,7 @@ const Category = () => {
                         </div>
                     </div>
                     <div>
-                        {!categoryItems.length ? (
+                        {categoryItems && !categoryItems.length ? (
                             <EmptyCategory />
                         ): (categoryItems.map((item, index) =>
                             <CategoryItem key={index} catItem={item} />

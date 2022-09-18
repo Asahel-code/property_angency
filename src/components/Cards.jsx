@@ -16,7 +16,7 @@ const Cards = () => {
     return (
         <div className="py-10 px-12">
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {!properties.length ? (
+                {properties && !properties.length ? (
                     <EmptyCategory />
                 ) : (properties.map((item, index) => {
                     return (

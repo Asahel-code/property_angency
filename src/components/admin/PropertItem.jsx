@@ -74,7 +74,7 @@ const PropertItem = () => {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {!properties.length ? (
+                    {properties && !properties.length ? (
                         <EmptyCategory />
                     ) : (properties.map((property, index) => {
                         return (
