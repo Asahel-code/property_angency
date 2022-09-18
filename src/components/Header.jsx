@@ -120,7 +120,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="about" className="flex items-center hover:text-blue-700">
+                <Link to="/admin/login" className="flex items-center hover:text-blue-700">
                     About us
                 </Link>
             </Typography>
