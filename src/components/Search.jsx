@@ -13,7 +13,7 @@ const Search = () => {
                         <div className={realEstateSearch ?`${categoryNavStyle} bg-blue-600` : `${categoryNavStyle} bg-gray-500`} onClick={() => setRealEstateSearch(true)}>Real Estate</div>
                         <div className={!realEstateSearch ?`${categoryNavStyle} bg-blue-600` : `${categoryNavStyle} bg-gray-500`} onClick={() => setRealEstateSearch(false)}>Land</div>
                     </div>
-                    <div className="grid grid-cols-4 sm:grid-cols-1 gap-4 py-5 px-4 bg-cyan-300 opacity-80">
+                    <div className="grid grid-cols-4 xs:grid-cols-1 gap-4 py-5 px-4 bg-cyan-300 opacity-80">
                         {realEstateSearch && 
                         <Select
                             id="subCategory"

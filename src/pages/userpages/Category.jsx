@@ -32,7 +32,7 @@ const Category = () => {
                     </Breadcrumb.Item>
                 </Breadcrumb>
             </div>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-5 lg:mx-5 xs:mx-2">
+            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2">
                 <div className="col-span-2">
                     <div className="text-center">
                         <h5 className="pb-8">{category} in Kenya</h5>
@@ -84,7 +84,7 @@ const Category = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:block sm:hidden">
+                <div className="lg:block xs:hidden">
                     <Search />
                 </div>
             </div>
