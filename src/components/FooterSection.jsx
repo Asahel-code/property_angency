@@ -5,6 +5,23 @@ import { BsTwitter } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
 const FooterSection = () => {
+
+    const handSocialMediaLinks = (link) => {
+        window.open(link, "_blank");
+      };
+      
+      const handleInstagram = () => {
+          handSocialMediaLinks('https://www.instagram.com/canvasbags.heeran');
+      };
+      
+      const handleTwitter = () => {
+          handSocialMediaLinks('https://www.twitter.com/HeeranCavas');
+      };
+      
+      const handleFacebook = () => {
+          handSocialMediaLinks('https://www.facebook.com/heerancanvas');
+      };
+      
     return (
         <div>
             <Footer container={true}>
@@ -47,22 +64,26 @@ const FooterSection = () => {
                             year={2022}
                         />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                            <Link to="#" className="hover:text-blue-700">
+                            <div className="hover:text-blue-700">
                                 <Footer.Icon
                                     icon={BsFacebook}
+                                    onClick={handleFacebook}
                                 />
-                            </Link>
+                            </div>
 
-                            <Link to="#" className="hover:text-blue-700">
+                            <div className="hover:text-blue-700">
                                 <Footer.Icon
                                     icon={BsInstagram}
-                                /></Link>
+                                    onClick={handleInstagram}
+                                />
+                            </div>
 
-                            <Link to="#" className="hover:text-blue-700">
+                            <div className="hover:text-blue-700">
                                 <Footer.Icon
                                     icon={BsTwitter}
+                                    onClick={handleTwitter}
                                 />
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
