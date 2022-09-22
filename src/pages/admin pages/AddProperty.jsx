@@ -62,7 +62,7 @@ const AddProperty = () => {
 
 
     return (
-        <div className="flex justify-center py-12 mx-48">
+        <div className="flex justify-center py-12 lg:mx-48 md:mx-24 w-full">
             <div className="border rounded-3xl w-full pb-5 shadow bg-white">
                 <h3 className="text-center border-b-2 font-bold text-3xl text-blue-900 py-3">
                     Add new property
