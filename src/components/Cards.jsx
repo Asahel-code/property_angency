@@ -16,7 +16,7 @@ const Cards = () => {
     }, [dispatch])
     return (
         <Suspense fallback={<h1>Loading profile...</h1>}>
-            <div className="py-10 px-12">
+            <div className="py-10 md:px-12 sm:px-6">
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {properties && !properties.length ? (
                         <EmptyCategory />
