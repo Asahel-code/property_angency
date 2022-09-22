@@ -64,21 +64,21 @@ const FooterSection = () => {
                             year={2022}
                         />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                            <div className="hover:text-blue-700">
+                            <div className="hover:text-blue-700 cursor-pointer">
                                 <Footer.Icon
                                     icon={BsFacebook}
                                     onClick={handleFacebook}
                                 />
                             </div>
 
-                            <div className="hover:text-blue-700">
+                            <div className="hover:text-blue-700 cursor-pointer">
                                 <Footer.Icon
                                     icon={BsInstagram}
                                     onClick={handleInstagram}
                                 />
                             </div>
 
-                            <div className="hover:text-blue-700">
+                            <div className="hover:text-blue-700 cursor-pointer">
                                 <Footer.Icon
                                     icon={BsTwitter}
                                     onClick={handleTwitter}
