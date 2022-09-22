@@ -11,15 +11,15 @@ const FooterSection = () => {
       };
       
       const handleInstagram = () => {
-          handSocialMediaLinks('https://www.instagram.com/canvasbags.heeran');
+          handSocialMediaLinks('https://www.instagram.com');
       };
       
       const handleTwitter = () => {
-          handSocialMediaLinks('https://www.twitter.com/HeeranCavas');
+          handSocialMediaLinks('https://www.twitter.com');
       };
       
       const handleFacebook = () => {
-          handSocialMediaLinks('https://www.facebook.com/heerancanvas');
+          handSocialMediaLinks('https://www.facebook.com');
       };
       
     return (
