@@ -42,7 +42,7 @@ const AddCategory = () => {
             .catch((error) => console.log(error.message))
     }
     return (
-        <div className="border mx-96 my-10 bg-white rounded-3xl">
+        <div className="border lg:mx-96 md:mx-36 my-10 bg-white md:rounded-3xl">
             <div>
                 <div className="w-full">
                     <div className="text-center border-b-2 py-4">
