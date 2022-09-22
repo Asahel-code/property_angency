@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Button, Select, TextInput } from "flowbite-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../redux/category-modal/categoryModalSlice';
+import { useNavigate } from 'react-router-dom';
 
-const Search = () => {
+const Search = (props) => {
     const [propertySearch, setPropertySearch] = useState("Real Estate");
     const [subCategory, setSubCategory] = useState("");
     const [location, setLocation] = useState("");
     const [price, setPrice] = useState("");
+
+    const navigate = useNavigate();
+
+    
 
     const categoryNavStyle = "py-2 px-4 uppercase text-white text-xl cursor-pointer";
     const { category } = useSelector((state) => state.category);
@@ -17,8 +22,15 @@ const Search = () => {
         dispatch(getCategories())
     }, [dispatch])
 
-    const handleSearch =() => {
-        console.log({propertySearch, subCategory, location, price})
+    const handleSearch = () => {
+
+        console.log({
+            subCategory: subCategory,
+            location: location,
+            price: price,
+        })
+
+        navigate(`/${propertySearch}`);
     }
 
     return (
@@ -63,7 +75,7 @@ const Search = () => {
                             placeholder="Price"
                             onChange={(e) => setPrice(e.target.value)}
                         />
-                        <Button onClick={handleSearch}>Search</Button>
+                        <Button onClick={handleSearch} style={{ width: "100%" }}>Search</Button>
                     </div>
                 </div>
 

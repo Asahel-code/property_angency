@@ -16,8 +16,9 @@ const Category = () => {
     let { category } = useParams();
 
     useEffect(() => {
-        setCategoryItems(properties.filter((e) => e.category === category))
-    }, [category, properties])
+        setCategoryItems(properties.filter((property) => property.category === category))
+    }, [category, properties]);
+    
     return (
         <div>
             <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">

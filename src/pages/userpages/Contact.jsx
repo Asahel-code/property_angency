@@ -90,7 +90,7 @@ const Contact = () => {
                     </form>
                 </div>
             </div>
-            <div className="contact__side__content flex justify-center items-center opacity-80">
+            <div className="contact__side__content flex justify-center items-center">
                 <div className="md:w-3/5 xs:w-full px-10 py-24">
                     <h2 className="pb-5 md:text-3xl xs:text-2xl font-bold text-center">Real Estate Agency</h2>
                     <p className="md:text-lg xs:text:md text-justify">

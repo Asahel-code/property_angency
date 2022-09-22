@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, TextInput, Pagination } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
-import { BiSearch } from "react-icons/bi";
 import numberWithCommas from '../../utils/numberWithCommas';
 import { getProperties, deleteProperty } from '../../redux/property-modal/propertyModalSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +9,7 @@ import EmptyCategory from '../EmptyCategory';
 
 const PropertItem = () => {
 
+    const [searchField, setSearchField] = useState("");
     const { properties } = useSelector((state) => state.property);
     const dispatch = useDispatch();
 
@@ -19,13 +19,13 @@ const PropertItem = () => {
 
     const handleDelete = (propertyName) => {
         dispatch(deleteProperty(propertyName))
-        .unwrap()
-        .then(()=> {
-             setTimeout(() => {
-                // eslint-disable-next-line no-restricted-globals
-                location.reload()
-            }, 2500);
-        })
+            .unwrap()
+            .then(() => {
+                setTimeout(() => {
+                    // eslint-disable-next-line no-restricted-globals
+                    location.reload()
+                }, 2500);
+            })
     }
 
     return (
@@ -44,10 +44,8 @@ const PropertItem = () => {
                             id="search"
                             type="text"
                             placeholder="Input your earch your search ..."
+                            onChange={(e) => setSearchField(e.target.value)}
                         />
-                    </div>
-                    <div className="text-2xl pl-6 cursor-pointer">
-                        <BiSearch />
                     </div>
                 </form>
             </div>
@@ -76,7 +74,15 @@ const PropertItem = () => {
                 <Table.Body className="divide-y">
                     {properties && !properties.length ? (
                         <EmptyCategory />
-                    ) : (properties && properties.map((property, index) => {
+                    ) : (properties && properties.filter((property) => {
+                        return(
+                            property === "" ?  property : 
+                            property.name.toLowerCase().includes(searchField.toLowerCase()) ||  
+                            property.category.toLowerCase().includes(searchField.toLowerCase()) ||  
+                            property.location.toLowerCase().includes(searchField.toLowerCase()) ||  
+                            property.price.toLowerCase().includes(searchField.toLowerCase())
+                        )     
+                    }).map((property, index) => {
                         return (
                             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
