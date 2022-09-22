@@ -177,7 +177,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-2 w-full">
+                                <div className="md:flex md:items-center xs:block gap-2 w-full">
                                     <div className="mt-2 block">
                                         <Label
                                             htmlFor="description"
