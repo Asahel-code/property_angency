@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, TextInput, Label, Textarea, Avatar, Select, FileInput } from 'flowbite-react';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +18,17 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
 
     const { category } = useSelector((state) => state.category);
 
+    useEffect(() => {
+        setName(property.name)
+        setDescription(property.description)
+        setLocation(property.location)
+        setPrice(property.price)
+        setCategoryItem(property.category)
+        setSubCategoryItem(property.subCategory)
+        setPhoneNumberContact(property.phoneNumberContact)
+        setWhatsappContact(property.whatsappContact)
+    }, [property])
+
     let subCategory = []
 
     category && category.forEach(element => {
@@ -27,6 +38,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
             }
         }
     });
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -74,7 +86,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         name="category"
                                         onChange={(e) => setCategoryItem(e.target.value)}
                                     >
-                                        <option value={property.category}>{property.category}</option>
+                                        <option value={property.category}>{categoryItem}</option>
                                         {category && category.map((item, index) => {
                                             return (
                                                 <option key={index} value={item.name}>{item.name}</option>
@@ -96,7 +108,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         name="subCategory"
                                         onChange={(e) => setSubCategoryItem(e.target.value)}
                                     >
-                                        <option value={property.subCategory}>{property.subCategory}</option>
+                                        <option value={property.subCategory}>{subCategoryItem}</option>
                                         {subCategory.map((item, index) => {
                                             return (
                                                 item.map((item, index) => {
@@ -123,13 +135,13 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         <TextInput
                                             id="propertyName"
                                             type="text"
-                                            value={property.name}
+                                            value={name}
                                             required={true}
                                             onChange={(e) => setName(e.target.value)}
                                         />
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-2 w-full">
+                                <div className="md:flex md:items-center xs:block gap-2 w-full">
                                     <div className="mt-2 block">
                                         <Label
                                             htmlFor="location"
@@ -140,7 +152,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         <TextInput
                                             id="location"
                                             type="text"
-                                            value={property.location}
+                                            value={location}
                                             required={true}
                                             onChange={(e) => setLocation(e.target.value)}
                                         />
@@ -159,7 +171,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         <TextInput
                                             id="price"
                                             type="text"
-                                            value={property.price}
+                                            value={price}
                                             required={true}
                                             onChange={(e) => setPrice(e.target.value)}
                                         />
@@ -175,7 +187,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     <div className="w-full">
                                         <Textarea
                                             id="description"
-                                            value={property.description}
+                                            value={description}
                                             required={true}
                                             rows={2}
                                             onChange={(e) => setDescription(e.target.value)}
@@ -227,7 +239,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         <TextInput
                                             id="phoneContactNumber"
                                             type="text"
-                                            value={property.phoneNumberContact}
+                                            value={phoneNumberContact}
                                             required={true}
                                             onChange={(e) => setPhoneNumberContact(e.target.value)}
                                         />
@@ -244,7 +256,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         <TextInput
                                             id="whatsappNumber"
                                             type="text"
-                                            value={property.whatsappContact}
+                                            value={whatsappContact}
                                             required={true}
                                             onChange={(e) => setWhatsappContact(e.target.value)}
                                         />
