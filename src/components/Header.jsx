@@ -61,7 +61,7 @@ const Header = () => {
                     arrowIcon={false}
                     label="Admin"
                 >
-                     <Dropdown.Item onClick={handleLogout}>
+                     <Dropdown.Item>
                         <Link to="/admin/dashboard">Dashboard</Link>
                     </Dropdown.Item>
                     <Dropdown.Item onClick={handleLogout}>
