@@ -213,7 +213,7 @@ const AddProperty = () => {
 
                             </div>
                             <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-4">
-                                <div className="flex xs:flex-col items-center w-full">
+                                <div className="md:flex md:items-center xs:block w-full">
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="phonecontactNumber"
