@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import {
-    Navbar,
     MobileNav,
     Typography,
     IconButton,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
-import { Dropdown } from "flowbite-react";
+import { Dropdown, Navbar } from "flowbite-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user-modal/userModalSlice';
 import { getCategories } from '../redux/category-modal/categoryModalSlice';
@@ -46,7 +45,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/admin/add-category" className="flex items-center hover:text-blue-700">
+                <Link to="/admin/add-category" className="hover:text-blue-700 text-md">
                     Add a category
                 </Link>
             </Typography>
@@ -62,9 +61,9 @@ const Header = () => {
                     label="Admin"
                 >
                      <Dropdown.Item>
-                        <Link to="/admin/dashboard">Dashboard</Link>
+                        <Link to="/admin/dashboard" className="hover:text-blue-700 text-md">Dashboard</Link>
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={handleLogout}>
+                    <Dropdown.Item onClick={handleLogout} className="hover:text-blue-700 text-md">
                         logout
                     </Dropdown.Item>
                 </Dropdown>
@@ -83,7 +82,7 @@ const Header = () => {
                             color="blue-gray"
                             className="p-1 font-normal"
                         >
-                            <Link to={`/${cat.name}`} className="flex items-center hover:text-blue-700">
+                            <Link to={`/${cat.name}`} className=" hover:text-blue-700 text-md">
                                 {cat.name}
                             </Link>
                         </Typography>)
@@ -101,7 +100,7 @@ const Header = () => {
                                     >
                                         {cat.subCategory.map((dropDownItem, index) => (
                                             <Dropdown.Item key={index}>
-                                                <Link className="hover:text-blue-700" to={`/${cat.name}/${dropDownItem.name}`}>{dropDownItem.name}</Link>
+                                                <Link className="hover:text-blue-700 text-md" to={`/${cat.name}/${dropDownItem.name}`}>{dropDownItem.name}</Link>
                                             </Dropdown.Item>
                                         ))}
 
@@ -123,7 +122,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/admin/login" className="flex items-center hover:text-blue-700">
+                <Link to="/admin/login" className="hover:text-blue-700 text-md">
                     About us
                 </Link>
             </Typography>
@@ -133,7 +132,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="contact" className="flex items-center hover:text-blue-700">
+                <Link to="contact" className="hover:text-blue-700 text-md">
                     Contact us
                 </Link>
             </Typography>
@@ -141,12 +140,12 @@ const Header = () => {
     );
 
     return (
-        <Navbar className="py-2 lg:py-4">
-            <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+        <Navbar className="xs:py-2 lg:py-6">
+            <div className="container mx-auto flex items-center justify-between">
                 <Typography
                     as="li"
-                    variant="small"
-                    className="mr-4 cursor-pointer py-1.5 font-normal"
+                    variant="text"
+                    className="mr-4 cursor-pointer py-1.5 font-bold text-lg"
                 >
                     <Link to="/">Real Estate Agency</Link>
                 </Typography>

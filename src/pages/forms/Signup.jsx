@@ -37,8 +37,8 @@ const Signup = () => {
     }
 
     return (
-        <div className="border lg:mx-96 md:mx-60 my-4 bg-white md:rounded-3xl">
-            <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center">
+            <div className="border my-4 bg-white md:rounded-3xl md:w-2/5 xs:w-full">
                 <div className="w-full">
                     <div className="text-center pb-2 pt-6">
                         <h4 className="font-bold text-3xl text-blue-900">Lets create your account</h4>

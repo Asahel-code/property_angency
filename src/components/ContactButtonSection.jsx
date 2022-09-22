@@ -12,8 +12,8 @@ const ContactButtonSection = () => {
     return (
         <div className="flex justify-center items-center my-6">
             <Card className="max-w-md">
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Planning to sell your land?
+                <p className="font-normal text-gray-700">
+                    Planning or wish to sell your land?
                 </p>
                 <div className="flex justify-center items-center">
                     <Button onClick={toggleModal}>Contact us</Button>

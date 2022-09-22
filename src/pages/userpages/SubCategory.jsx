@@ -22,7 +22,7 @@ const SubCategory = () => {
 
     return (
         <div>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
+            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                 <div className="col-span-2">
                     <div className="pb-6">
                         <Breadcrumb aria-label="Default breadcrumb example">
@@ -61,7 +61,7 @@ const SubCategory = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:block sm:hidden">
+                <div className="lg:block xs:hidden">
                     <Search />
                 </div>
             </div>

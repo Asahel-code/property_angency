@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import { BsTelephoneFill, BsEnvelope, BsWhatsapp } from "react-icons/bs";
+import { BsTelephoneFill, BsEnvelope, BsWhatsapp, BsGeoAlt } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import PhoneContactDetailsModal from '../modal/PhoneContactDetailsModal';
 import numberWithCommas from '../utils/numberWithCommas';
@@ -12,9 +12,9 @@ const CategoryItem = ({ catItem }) => {
         setModal(!modal);
     };
 
-    const handleWhatsapp = (number,propertyName) => {
+    const handleWhatsapp = (number, propertyName) => {
         window.open(`https://api.whatsapp.com/send/?phone=%2B${number}&text=Hi%2C+I+am+interested+in+your+property+${propertyName}&type=phone_number&app_absent=0`, "_blank");
-      };
+    };
 
     return (
         <div>
@@ -39,14 +39,19 @@ const CategoryItem = ({ catItem }) => {
                             <h5 className="text-2xl font-bold tracking-tight text-gray-900 ">
                                 Ksh. {numberWithCommas(Number(catItem.price))}
                             </h5>
-                            <p className="font-light text-gray-700 py-3">
+                            <p className="font-light text-gray-700 py-3 lmd:text-lg xs:text:md">
                                 {catItem.description.length > 250 ?
                                     `${catItem.description.substring(0, 250)}...` : catItem.description
                                 }
                             </p>
-                            <p className="text-gray-400 text-sm">
-                                {catItem.location}
-                            </p>
+                            <div className="flex items-center gap-4">
+                                <p className="text-blue-700 md:text-lg xs:text-md">
+                                    <BsGeoAlt />
+                                </p>
+                                <p className="text-gray-500 text-sm">
+                                    {catItem.location}
+                                </p>
+                            </div>
                         </div>
                     </Link>
                     <div className="absolute bottom-2 right-4">

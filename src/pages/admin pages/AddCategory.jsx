@@ -42,60 +42,58 @@ const AddCategory = () => {
             .catch((error) => console.log(error.message))
     }
     return (
-        <div className="border lg:mx-96 md:mx-36 my-10 bg-white md:rounded-3xl">
-            <div>
-                <div className="w-full">
-                    <div className="text-center border-b-2 py-4">
-                        <h4 className="font-bold text-3xl text-blue-900">Add a new Category</h4>
-                    </div>
-                    <form className="flex flex-col gap-4 py-4 px-4" onSubmit={handleSubmit}>
-                        <div className="w-full">
-                            <div className="mb-2 block">
-                                <Label
-                                    htmlFor="category"
-                                    value="Category name"
-                                />
-                            </div>
-                            <TextInput
-                                id="category"
-                                type="text"
-                                placeholder="Real Estate"
-                                required={true}
-                                onChange={(e) => setCategoryName(e.target.value)}
+        <div className="flex justify-center items-center">
+            <div className="border my-10 bg-white md:rounded-3xl md:w-2/5 xs:w-full">
+                <div className="text-center border-b-2 py-4">
+                    <h4 className="font-bold text-3xl text-blue-900">Add a new Category</h4>
+                </div>
+                <form className="flex flex-col gap-4 py-4 px-4" onSubmit={handleSubmit}>
+                    <div className="w-full">
+                        <div className="mb-2 block">
+                            <Label
+                                htmlFor="category"
+                                value="Category name"
                             />
                         </div>
-                        <div>
-                            <div className="mb-2 flex justify-between items-center">
-                                <Label
-                                    htmlFor="subCategory"
-                                    value="SubCategory name"
-                                />
-                                <div className="cursor-pointer text-lg text-gray-600">
-                                    <BsFillPlusCircleFill onClick={handleAddInput} />
-                                </div>
+                        <TextInput
+                            id="category"
+                            type="text"
+                            placeholder="Real Estate"
+                            required={true}
+                            onChange={(e) => setCategoryName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <div className="mb-2 flex justify-between items-center">
+                            <Label
+                                htmlFor="subCategory"
+                                value="SubCategory name"
+                            />
+                            <div className="cursor-pointer text-lg text-gray-600">
+                                <BsFillPlusCircleFill onClick={handleAddInput} />
                             </div>
-                            {subCategory.map((input, index) => {
-                                return (
-                                    <div className="flex justify-between items-center mb-2" key={index}>
-                                        <TextInput
-                                            id="subCategory"
-                                            type="text"
-                                            name='name'
-                                            placeholder="flats"
-                                            onChange={(e) => handleInput(e, index)}
-                                        />
-                                        <div className="cursor-pointer text-lg text-gray-600">
-                                            <BsDashCircleFill onClick={() => handleDeleteInput(index)} />
-                                        </div>
-                                    </div>
-                                )
-                            })}
                         </div>
-                        <Button type="submit" style={{ width: "100%" }}>
-                            Submit
-                        </Button>
-                    </form>
-                </div>
+                        {subCategory.map((input, index) => {
+                            return (
+                                <div className="flex justify-between items-center mb-2" key={index}>
+                                    <TextInput
+                                        id="subCategory"
+                                        type="text"
+                                        name='name'
+                                        placeholder="flats"
+                                        onChange={(e) => handleInput(e, index)}
+                                    />
+                                    <div className="cursor-pointer text-lg text-gray-600">
+                                        <BsDashCircleFill onClick={() => handleDeleteInput(index)} />
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <Button type="submit" style={{ width: "100%" }}>
+                        Submit
+                    </Button>
+                </form>
             </div>
         </div>
     )

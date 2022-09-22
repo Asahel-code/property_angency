@@ -38,7 +38,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
             }
         }
     });
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -71,61 +71,10 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                 </Modal.Header>
                 <form onSubmit={handleSubmit} encType='multipart/form-data'>
                     <Modal.Body>
-                        <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 my-5 md:bg-gray-200 py-4 md:px-10 xs:px-4">
-                            <div className="md:flex md:items-center xs:block w-full">
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="category"
-                                        value="Category"
-                                    />
-                                </div>
-                                <div></div>
-                                <div className="w-full">
-                                    <Select
-                                        id="category"
-                                        name="category"
-                                        onChange={(e) => setCategoryItem(e.target.value)}
-                                    >
-                                        <option value={property.category}>{categoryItem}</option>
-                                        {category && category.map((item, index) => {
-                                            return (
-                                                <option key={index} value={item.name}>{item.name}</option>
-                                            )
-                                        })}
-                                    </Select>
-                                </div>
-                            </div>
-                            <div className="md:flex md:items-center xs:block w-full">
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="subCategory"
-                                        value="Sub-category"
-                                    />
-                                </div>
-                                <div className="w-full">
-                                    <Select
-                                        id="subCategory"
-                                        name="subCategory"
-                                        onChange={(e) => setSubCategoryItem(e.target.value)}
-                                    >
-                                        <option value={property.subCategory}>{subCategoryItem}</option>
-                                        {subCategory.map((item, index) => {
-                                            return (
-                                                item.map((item, index) => {
-                                                    return (
-                                                        <option key={index} value={item.name}>{item.name}</option>
-                                                    )
-                                                })
-                                            )
-                                        })}
-                                    </Select>
-                                </div>
-                            </div>
-                        </div>
                         <div className="md:px-6 xs:px-4">
-                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
-                                <div className="md:flex md:items-center xs:block gap-2 w-full">
-                                    <div className="mt-2 block">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2">
+                                <div className="block w-full">
+                                    <div className="block">
                                         <Label
                                             htmlFor="propertyName"
                                             value="Property name"
@@ -141,8 +90,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         />
                                     </div>
                                 </div>
-                                <div className="md:flex md:items-center xs:block gap-2 w-full">
-                                    <div className="mt-2 block">
+                                <div className="block w-full">
+                                    <div className="block">
                                         <Label
                                             htmlFor="location"
                                             value="Property location"
@@ -159,12 +108,63 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
-                                <div className="md:flex md:items-center xs:block gap-2 w-full">
-                                    <div className="mt-2 block">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2">
+                                <div className="block w-full">
+                                    <div className="block">
+                                        <Label
+                                            htmlFor="category"
+                                            value="Category"
+                                        />
+                                    </div>
+                                    <div></div>
+                                    <div className="w-full">
+                                        <Select
+                                            id="category"
+                                            name="category"
+                                            onChange={(e) => setCategoryItem(e.target.value)}
+                                        >
+                                            <option value={property.category}>{categoryItem}</option>
+                                            {category && category.map((item, index) => {
+                                                return (
+                                                    <option key={index} value={item.name}>{item.name}</option>
+                                                )
+                                            })}
+                                        </Select>
+                                    </div>
+                                </div>
+                                <div className="block w-full">
+                                    <div className="block">
+                                        <Label
+                                            htmlFor="subCategory"
+                                            value="Sub-category"
+                                        />
+                                    </div>
+                                    <div className="w-full">
+                                        <Select
+                                            id="subCategory"
+                                            name="subCategory"
+                                            onChange={(e) => setSubCategoryItem(e.target.value)}
+                                        >
+                                            <option value={property.subCategory}>{subCategoryItem}</option>
+                                            {subCategory.map((item, index) => {
+                                                return (
+                                                    item.map((item, index) => {
+                                                        return (
+                                                            <option key={index} value={item.name}>{item.name}</option>
+                                                        )
+                                                    })
+                                                )
+                                            })}
+                                        </Select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="grid md:grid-cols-3 xs:grid-cols-1 gap-2 py-2">
+                                <div className="block w-full">
+                                    <div className="block">
                                         <Label
                                             htmlFor="price"
-                                            value="Property price"
+                                            value="Property price (ksh)"
                                         />
                                     </div>
                                     <div className="w-full">
@@ -177,22 +177,56 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         />
                                     </div>
                                 </div>
-                                <div className="md:flex md:items-center xs:block gap-2 w-full">
-                                    <div className="mt-2 block">
+                                <div className="block w-full">
+                                    <div className="block">
                                         <Label
-                                            htmlFor="description"
-                                            value="Property description"
+                                            htmlFor="phonecontactNumber"
+                                            value="Phone contact number"
                                         />
                                     </div>
                                     <div className="w-full">
-                                        <Textarea
-                                            id="description"
-                                            value={description}
+                                        <TextInput
+                                            id="phoneContactNumber"
+                                            type="text"
+                                            value={phoneNumberContact}
                                             required={true}
-                                            rows={2}
-                                            onChange={(e) => setDescription(e.target.value)}
+                                            onChange={(e) => setPhoneNumberContact(e.target.value)}
                                         />
                                     </div>
+                                </div>
+                                <div className="block w-full">
+                                    <div className="block">
+                                        <Label
+                                            htmlFor="whatsappNumber"
+                                            value="Whatsapp number"
+                                        />
+                                    </div>
+                                    <div className="w-full">
+                                        <TextInput
+                                            id="whatsappNumber"
+                                            type="text"
+                                            value={whatsappContact}
+                                            required={true}
+                                            onChange={(e) => setWhatsappContact(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="block w-full">
+                                <div className="mb-2 block">
+                                    <Label
+                                        htmlFor="description"
+                                        value="Property description"
+                                    />
+                                </div>
+                                <div className="w-full">
+                                    <Textarea
+                                        id="description"
+                                        value={description}
+                                        required={true}
+                                        rows={3}
+                                        onChange={(e) => setDescription(e.target.value)}
+                                    />
                                 </div>
                             </div>
                             <div>
@@ -227,46 +261,10 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     )}
                                 </div>
                             </div>
-                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
-                                <div className="md:flex md:items-center xs:block w-full">
-                                    <div className="mb-2 block">
-                                        <Label
-                                            htmlFor="phonecontactNumber"
-                                            value="Phone contact number"
-                                        />
-                                    </div>
-                                    <div className="w-full">
-                                        <TextInput
-                                            id="phoneContactNumber"
-                                            type="text"
-                                            value={phoneNumberContact}
-                                            required={true}
-                                            onChange={(e) => setPhoneNumberContact(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="md:flex md:items-center xs:block w-full">
-                                    <div className="mb-2 block">
-                                        <Label
-                                            htmlFor="whatsappNumber"
-                                            value="Whatsapp number"
-                                        />
-                                    </div>
-                                    <div className="w-full">
-                                        <TextInput
-                                            id="whatsappNumber"
-                                            type="text"
-                                            value={whatsappContact}
-                                            required={true}
-                                            onChange={(e) => setWhatsappContact(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
                             <Button
                                 type="submit"
                                 size="lg"
-                                style={{ width: "60%" }}>
+                                style={{ width: "50%" }}>
                                 Update
                             </Button>
                         </div>

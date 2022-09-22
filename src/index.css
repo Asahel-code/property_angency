@@ -3,11 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.search__section{
-    background-image: url(./assets/images/search_img.jpg);
-}
-
 body{
     font-family: Arial, "Roboto";
     background-color: #f5f1f1;
 }
+
+.search__section{
+    background-image: url(./assets/images/search_img.jpg);
+}
+
+.contact__side__content{
+    background-image: url(./assets/images/contactus_bg.jpg);
+}
+
