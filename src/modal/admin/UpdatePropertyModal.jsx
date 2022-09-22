@@ -59,8 +59,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                 </Modal.Header>
                 <form onSubmit={handleSubmit} encType='multipart/form-data'>
                     <Modal.Body>
-                        <div className="grid grid-cols-2 gap-2 my-5 bg-gray-200 py-4 px-10">
-                            <div className="flex items-center w-full">
+                        <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 my-5 md:bg-gray-200 py-4 md:px-10 xs:px-4">
+                            <div className="md:flex md:items-center xs:block w-full">
                                 <div className="mb-2 block">
                                     <Label
                                         htmlFor="category"
@@ -83,7 +83,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     </Select>
                                 </div>
                             </div>
-                            <div className="flex items-center w-full">
+                            <div className="md:flex md:items-center xs:block w-full">
                                 <div className="mb-2 block">
                                     <Label
                                         htmlFor="subCategory"
@@ -110,9 +110,9 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-6">
-                            <div className="grid grid-cols-2 gap-2 py-2">
-                                <div className="flex items-center gap-2 w-full">
+                        <div className="md:px-6 xs:px-4">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
+                                <div className="md:flex md:items-center xs:block gap-2 w-full">
                                     <div className="mt-2 block">
                                         <Label
                                             htmlFor="propertyName"
@@ -147,8 +147,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-2 py-2">
-                                <div className="flex items-center gap-2 w-full">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
+                                <div className="md:flex md:items-center xs:block gap-2 w-full">
                                     <div className="mt-2 block">
                                         <Label
                                             htmlFor="price"
@@ -215,8 +215,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     )}
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-2 py-2">
-                                <div className="flex items-center w-full">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-2">
+                                <div className="md:flex md:items-center xs:block w-full">
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="phonecontactNumber"
@@ -233,7 +233,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex items-center w-full">
+                                <div className="md:flex md:items-center xs:block w-full">
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="whatsappNumber"
@@ -254,7 +254,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                             <Button
                                 type="submit"
                                 size="lg"
-                                style={{ width: "300px" }}>
+                                style={{ width: "60%" }}>
                                 Update
                             </Button>
                         </div>

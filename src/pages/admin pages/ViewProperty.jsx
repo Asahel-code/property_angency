@@ -23,7 +23,7 @@ const ViewProperty = () => {
         setModal(!modal);
     };
     return (
-        <div className="m-12">
+        <div className="md:mx-12 xs:mx-3 my-6 ">
             <div className="flex justify-end mb-5">
                 <Button color="success" style={{ width: "100px" }} onClick={toggleModal}>
                     Update
