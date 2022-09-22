@@ -23,7 +23,7 @@ const FooterSection = () => {
                                 <Footer.Title title="Links" />
                                 <Footer.LinkGroup col={true}>
                                     <Link to="/about" className="hover:text-blue-700">About us</Link>
-                                    <Link to="" className="hover:text-blue-700">Contact us</Link>
+                                    <Link to="/contact" className="hover:text-blue-700">Contact us</Link>
                                 </Footer.LinkGroup>
                             </div>
                             <div>
