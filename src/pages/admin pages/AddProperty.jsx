@@ -92,7 +92,7 @@ const AddProperty = () => {
                                 </Select>
                             </div>
                         </div>
-                        <div className="flex items-center w-full">
+                        <div className="md:flex md:items-center xs:block w-full">
                             <div className="mb-2 block">
                                 <Label
                                     htmlFor="subCategory"
@@ -230,7 +230,7 @@ const AddProperty = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex items-center w-full">
+                                <div className="md:flex md:items-center xs:block w-full">
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="whatsappNumber"
