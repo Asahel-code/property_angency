@@ -8,6 +8,7 @@ import Category from "../pages/userpages/Category"
 import Home from "../pages/userpages/Home"
 import ItemDetails from "../pages/userpages/ItemDetails"
 import SubCategory from "../pages/userpages/SubCategory"
+import Contact from "../pages/userpages/Contact"
 
 export const useRouter = () => [
     {
@@ -26,7 +27,10 @@ export const useRouter = () => [
         path: "/:category/:subCategory/:propertyName",
         element: <ItemDetails />,
     },
-
+    {
+        path: "/contact",
+        element: <Contact/>,
+    },
     {
         path: "/admin/dashboard",
         element: <Dashboard />,

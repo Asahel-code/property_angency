@@ -35,13 +35,13 @@ const Login = () => {
 
 
     return (
-        <div className="border mx-96 my-10 bg-white rounded-3xl">
+        <div className="border lg:mx-96 md:mx-60 my-10 bg-white md:rounded-3xl w-full">
             <div className="flex justify-center items-center">
                 <div className="w-full">
                     <div className="text-center pb-2 pt-6">
                         <h4 className="font-bold text-3xl text-blue-900">Welcome back</h4>
                     </div>
-                    <form className="flex flex-col gap-4 py-2 px-8" onSubmit={handleSubmit}>
+                    <form className="flex flex-col gap-4 py-2 lg:px-8 md:px-6 xs:px-4" onSubmit={handleSubmit}>
                         <div className="w-full">
                             <div className="mb-2 block">
                                 <Label
@@ -71,7 +71,7 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <Button type="submit" style={{ width: "100%", color: "white" }}>
+                        <Button type="submit" style={{ width: "100%" }}>
                             Submit
                         </Button>
                         <div className="flex items-center justify-start gap-2 text-sm">

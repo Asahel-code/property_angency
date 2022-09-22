@@ -251,7 +251,7 @@ const AddProperty = () => {
                             <Button
                                 type="submit"
                                 size="lg"
-                                style={{ width: "300px", color: "white" }}>
+                                style={{ width: "300px" }}>
                                 Add
                             </Button>
                         </div>

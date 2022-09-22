@@ -30,8 +30,8 @@ const ViewProperty = () => {
                 </Button>
                 {modal && <UpdatePropertyModal property={property} closeModal={toggleModal} />}
             </div>
-            <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-6 border shadow-lg mb-5">
-                <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 col-span-2">
+            <div className="grid md:grid-cols-4 xs:grid-cols-1 gap-6 border shadow-lg mb-5">
+                <div className="h-56 xs:h-64 xl:h-80 2xl:h-96 col-span-2">
                     {property &&
                         <Carousel slide={false}>
                             {property.images.map((item, index) => {

@@ -20,22 +20,22 @@ const Category = () => {
     }, [category, properties])
     return (
         <div>
-            <div className="my-8">
-                <Breadcrumb aria-label="Default breadcrumb example">
-                    <Breadcrumb.Item
-                        icon={HiHome}
-                    >
-                        <Link to="/">Home</Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        <Link to={`/${category}`}>{category}</Link>
-                    </Breadcrumb.Item>
-                </Breadcrumb>
-            </div>
-            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2">
+            <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                 <div className="col-span-2">
+                    <div  className="pb-6">
+                        <Breadcrumb aria-label="Default breadcrumb example">
+                            <Breadcrumb.Item
+                                icon={HiHome}
+                            >
+                                <Link to="/">Home</Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <Link to={`/${category}`}>{category}</Link>
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
                     <div className="text-center">
-                        <h5 className="pb-8">{category} in Kenya</h5>
+                        <h5 className="pb-8 text-2xl">{category} in Kenya</h5>
                     </div>
                     {/* <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center w-full">
@@ -68,7 +68,7 @@ const Category = () => {
                     <div>
                         {categoryItems && !categoryItems.length ? (
                             <EmptyCategory />
-                        ): (categoryItems && categoryItems.map((item, index) =>
+                        ) : (categoryItems && categoryItems.map((item, index) =>
                             <CategoryItem key={index} catItem={item} />
                         ))}
 
@@ -84,7 +84,7 @@ const Category = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:block xs:hidden">
+                <div className="lg:block sm:hidden">
                     <Search />
                 </div>
             </div>

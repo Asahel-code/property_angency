@@ -91,7 +91,7 @@ const AddCategory = () => {
                                 )
                             })}
                         </div>
-                        <Button type="submit" style={{ width: "100%", color: "white" }}>
+                        <Button type="submit" style={{ width: "100%" }}>
                             Submit
                         </Button>
                     </form>

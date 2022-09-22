@@ -22,54 +22,26 @@ const SubCategory = () => {
 
     return (
         <div>
-            <div className="my-8">
-                <Breadcrumb aria-label="Default breadcrumb example">
-                    <Breadcrumb.Item
-                        icon={HiHome}
-                    >
-                        <Link to="/">Home</Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        <Link to={`/${category}`}>{category}</Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        <Link to={`/${subCategory}`}>{subCategory}</Link>
-                    </Breadcrumb.Item>
-                </Breadcrumb>
-            </div>
-            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2">
+            <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                 <div className="col-span-2">
-                    <div className="text-center">
-                        <h5 className="pb-8">{subCategory} in Kenya</h5>
+                    <div className="pb-6">
+                        <Breadcrumb aria-label="Default breadcrumb example">
+                            <Breadcrumb.Item
+                                icon={HiHome}
+                            >
+                                <Link to="/">Home</Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <Link to={`/${category}`}>{category}</Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <Link to={`/${subCategory}`}>{subCategory}</Link>
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
                     </div>
-                    {/* <div className="flex justify-between items-center">
-                        <div className="flex gap-2 items-center w-full">
-                            <Label htmlFor="sort" value="Sort by" />
-                            <div className="w-1/2">
-                                <Select
-                                    id="sort"
-                                >
-                                    <option>
-                                        Featured
-                                    </option>
-                                </Select>
-                            </div>
-
-
-                        </div>
-                        <div className="flex gap-2 items-center w-full">
-                            <Label htmlFor="items" value="Show items" />
-                            <div className="w-1/2">
-                                <Select
-                                    id="items"
-                                >
-                                    <option>
-                                        10 items
-                                    </option>
-                                </Select>
-                            </div>
-                        </div>
-                    </div> */}
+                    <div className="text-center">
+                        <h5 className="pb-8 text-2xl">{subCategory} in Kenya</h5>
+                    </div>
                     <div>
                         {subCategoryItems && !subCategoryItems.length ? (
                             <EmptyCategory />

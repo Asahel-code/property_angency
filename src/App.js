@@ -21,7 +21,7 @@ const App = () => {
               <Route exact key={r.path} path={r.path} element={r.element} />
             ))}
         </Routes>
-        <FooterSection />   
+        <FooterSection />
       </Router>
     </div>
   );
