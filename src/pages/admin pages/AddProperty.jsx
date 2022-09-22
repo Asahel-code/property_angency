@@ -68,7 +68,7 @@ const AddProperty = () => {
                     Add new property
                 </h3>
                 <form className="w-full" onSubmit={handleSubmit} encType='multipart/form-data'>
-                    <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 my-5 bg-gray-200 py-4 px-10">
+                    <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 my-5 md:bg-gray-200 py-4 px-10">
                         <div className="flex xs:flex-col items-center w-full">
                             <div className="mb-2 block">
                                 <Label
