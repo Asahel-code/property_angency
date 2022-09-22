@@ -63,13 +63,13 @@ const AddProperty = () => {
 
     return (
         <div className="flex justify-center py-12 lg:mx-48 md:mx-24 w-full">
-            <div className="border rounded-3xl w-full pb-5 shadow bg-white">
+            <div className="border md:rounded-3xl w-full pb-5 shadow bg-white">
                 <h3 className="text-center border-b-2 font-bold text-3xl text-blue-900 py-3">
                     Add new property
                 </h3>
                 <form className="w-full" onSubmit={handleSubmit} encType='multipart/form-data'>
-                    <div className="grid grid-cols-2 gap-2 my-5 bg-gray-200 py-4 px-10">
-                        <div className="flex items-center w-full">
+                    <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 my-5 bg-gray-200 py-4 px-10">
+                        <div className="flex xs:flex-col items-center w-full">
                             <div className="mb-2 block">
                                 <Label
                                     htmlFor="category"
@@ -212,8 +212,8 @@ const AddProperty = () => {
                                 )}
 
                             </div>
-                            <div className="grid grid-cols-2 gap-2 py-4">
-                                <div className="flex items-center w-full">
+                            <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-2 py-4">
+                                <div className="flex xs:flex-col items-center w-full">
                                     <div className="mb-2 block">
                                         <Label
                                             htmlFor="phonecontactNumber"
