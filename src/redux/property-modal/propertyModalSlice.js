@@ -85,21 +85,20 @@ const propertySlice = createSlice({
         },
         [addProperty.fulfilled]: (state, action) => {
             state.isLoaded = true;
-            state.property = action.payload.property;
+            state.properties = action.payload.properties;
         },
         [addProperty.rejected]: (state, action) => {
             state.isLoaded = false;
         },
         [updateProperty.fulfilled]: (state, action) => {
             state.isLoaded = true;
-            state.property = action.payload.property;
+            state.properties = action.payload.properties;
         },
         [updateProperty.rejected]: (state, action) => {
             state.isLoaded = false;
         },
         [deleteProperty.fulfilled]: (state, action) => {
             state.isLoaded = false;
-            state.property = null;
         },
         [deleteProperty.rejected]: (state, action) => {
             state.isLoaded = false;

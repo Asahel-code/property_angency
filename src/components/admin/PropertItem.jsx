@@ -6,6 +6,7 @@ import numberWithCommas from '../../utils/numberWithCommas';
 import { getProperties, deleteProperty } from '../../redux/property-modal/propertyModalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyCategory from '../EmptyCategory';
+import { toast } from 'react-toastify';
 
 const PropertItem = () => {
 
@@ -21,13 +22,12 @@ const PropertItem = () => {
         dispatch(deleteProperty(propertyName))
             .unwrap()
             .then(() => {
-                setTimeout(() => {
-                    // eslint-disable-next-line no-restricted-globals
-                    location.reload()
-                }, 2500);
+                toast.error('Property deleated successfully!!');
+                // eslint-disable-next-line no-restricted-globals
+                location.reload()
             })
+            .catch((error) => console.log(error.message))
     }
-
     return (
         <div>
             <div className="flex justify-end mb-5">
@@ -75,13 +75,13 @@ const PropertItem = () => {
                     {properties && !properties.length ? (
                         <EmptyCategory />
                     ) : (properties && properties.filter((property) => {
-                        return(
-                            property === "" ?  property : 
-                            property.name.toLowerCase().includes(searchField.toLowerCase()) ||  
-                            property.category.toLowerCase().includes(searchField.toLowerCase()) ||  
-                            property.location.toLowerCase().includes(searchField.toLowerCase()) ||  
-                            property.price.toLowerCase().includes(searchField.toLowerCase())
-                        )     
+                        return (
+                            property === "" ? property :
+                                property.name.toLowerCase().includes(searchField.toLowerCase()) ||
+                                property.category.toLowerCase().includes(searchField.toLowerCase()) ||
+                                property.location.toLowerCase().includes(searchField.toLowerCase()) ||
+                                property.price.toLowerCase().includes(searchField.toLowerCase())
+                        )
                     }).map((property, index) => {
                         return (
                             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>

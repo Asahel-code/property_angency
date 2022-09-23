@@ -144,7 +144,7 @@ const Header = () => {
             <div className="container mx-auto flex items-center justify-between">
                 <Typography
                     as="li"
-                    variant="text"
+                    variant="small"
                     className="mr-4 cursor-pointer py-1.5 font-bold text-lg"
                 >
                     <Link to="/">Real Estate Agency</Link>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../redux/category-modal/categoryModalSlice';
 import { addProperty } from '../../redux/property-modal/propertyModalSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddProperty = () => {
 
@@ -55,7 +56,11 @@ const AddProperty = () => {
         dispatch(addProperty(formData))
             .unwrap()
             .then(() => {
-                navigate("/admin/dashboard")
+                toast.success('Property is added successfull');
+                setTimeout(() => {
+                    navigate("/admin/dashboard");
+                }, 2500);
+
             })
             .catch((error) => console.log(error.message))
     }

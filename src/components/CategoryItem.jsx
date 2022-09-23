@@ -18,7 +18,7 @@ const CategoryItem = ({ catItem }) => {
 
     return (
         <div>
-            <div className="my-6 border grid sm:grid-cols-1 md:grid-cols-3 bg-white rounded-xl">
+            <div className="my-6 border grid xs:grid-cols-1 md:grid-cols-3 bg-white rounded-xl">
                 <div className="w-full pb-4 md:pr-4 sm:pr-0">
                     <div className="mb-3 w-full">
                         <img className="w-full h-60" src={`https://real-estate-agency-mark.herokuapp.com/${previewImg}`} alt="preview" />
@@ -39,7 +39,7 @@ const CategoryItem = ({ catItem }) => {
                             <h5 className="text-2xl font-bold tracking-tight text-gray-900 ">
                                 Ksh. {numberWithCommas(Number(catItem.price))}
                             </h5>
-                            <p className="font-light text-gray-700 py-3 lmd:text-lg xs:text:md">
+                            <p className="font-light text-gray-700 py-3 lmd:text-lg">
                                 {catItem.description.length > 250 ?
                                     `${catItem.description.substring(0, 250)}...` : catItem.description
                                 }
