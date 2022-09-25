@@ -7,6 +7,7 @@ import EmptyCategory from "../../components/EmptyCategory";
 import Search from "../../components/Search";
 import ContactButtonSection from "../../components/ContactButtonSection";
 import { useSelector } from 'react-redux';
+import Helmet from '../../components/Helemet';
 
 const Category = () => {
 
@@ -18,27 +19,28 @@ const Category = () => {
     useEffect(() => {
         setCategoryItems(properties.filter((property) => property.category === category))
     }, [category, properties]);
-    
+
     return (
-        <div>
-            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
-                <div className="col-span-2">
-                    <div  className="pb-6">
-                        <Breadcrumb aria-label="Default breadcrumb example">
-                            <Breadcrumb.Item
-                                icon={HiHome}
-                            >
-                                <Link to="/">Home</Link>
-                            </Breadcrumb.Item>
-                            <Breadcrumb.Item>
-                                <Link to={`/${category}`}>{category}</Link>
-                            </Breadcrumb.Item>
-                        </Breadcrumb>
-                    </div>
-                    <div className="text-center">
-                        <h5 className="pb-8 text-2xl">{category} in Kenya</h5>
-                    </div>
-                    {/* <div className="flex justify-between items-center">
+        <Helmet title={category}>
+            <div>
+                <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
+                    <div className="col-span-2">
+                        <div className="pb-6">
+                            <Breadcrumb aria-label="Default breadcrumb example">
+                                <Breadcrumb.Item
+                                    icon={HiHome}
+                                >
+                                    <Link to="/">Home</Link>
+                                </Breadcrumb.Item>
+                                <Breadcrumb.Item>
+                                    <Link to={`/${category}`}>{category}</Link>
+                                </Breadcrumb.Item>
+                            </Breadcrumb>
+                        </div>
+                        <div className="text-center">
+                            <h5 className="pb-8 text-2xl">{category} in Kenya</h5>
+                        </div>
+                        {/* <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center w-full">
                             <Label htmlFor="sort" value="Sort by" />
                             <div className="w-1/2">
@@ -66,30 +68,32 @@ const Category = () => {
                             </div>
                         </div>
                     </div> */}
-                    <div>
-                        {categoryItems && !categoryItems.length ? (
-                            <EmptyCategory />
-                        ) : (categoryItems && categoryItems.map((item, index) =>
-                            <CategoryItem key={index} catItem={item} />
-                        ))}
-
-                        {categoryItems && categoryItems.length > 10 &&
-                            <Pagination
-                                currentPage={1}
-                                totalPages={100}
-                            //   onPageChange={onPageChange}
-                            />
-                        }
                         <div>
-                            <ContactButtonSection />
+                            {categoryItems && !categoryItems.length ? (
+                                <EmptyCategory />
+                            ) : (categoryItems && categoryItems.map((item, index) =>
+                                <CategoryItem key={index} catItem={item} />
+                            ))}
+
+                            {categoryItems && categoryItems.length > 10 &&
+                                <Pagination
+                                    currentPage={1}
+                                    totalPages={100}
+                                //   onPageChange={onPageChange}
+                                />
+                            }
+                            <div>
+                                <ContactButtonSection />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="lg:block xs:hidden">
-                    <Search />
+                    <div className="lg:block xs:hidden">
+                        <Search />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Helmet>
+
     )
 }
 

@@ -1,16 +1,19 @@
 import Cards from "../../components/Cards"
 import ContactButtonSection from "../../components/ContactButtonSection"
+import Helmet from "../../components/Helemet"
 import Search from "../../components/Search"
 
 const Home = () => {
     return (
-        <div>
-            <Search />
-            <Cards />
-            <div className="m-4">
-                <ContactButtonSection />
+        <Helmet title="Home">
+            <div>
+                <Search />
+                <Cards />
+                <div className="m-4">
+                    <ContactButtonSection />
+                </div>
             </div>
-        </div>
+        </Helmet>
     )
 }
 
