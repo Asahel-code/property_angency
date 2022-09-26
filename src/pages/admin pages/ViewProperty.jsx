@@ -38,7 +38,7 @@ const ViewProperty = () => {
                                 return (
                                     <img
                                         key={index}
-                                        src={`https://real-estate-agency-mark.herokuapp.com/${item}`}
+                                        src={item}
                                         alt="..."
                                     />
                                 )

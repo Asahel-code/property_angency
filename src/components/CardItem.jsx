@@ -8,7 +8,7 @@ const CardItem = ({ property }) => {
     <div>
       <Link to={`/${property.category}/${property.subCategory ? property.subCategory : property.category}/${property.name}`}>
         <div className="max-w-sm">
-          <Card imgSrc={`https://real-estate-agency-mark.herokuapp.com/${property.images[0]}`}>
+          <Card imgSrc={property.images[0]}>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Ksh.{numberWithCommas(Number(property.price))}
             </h5>

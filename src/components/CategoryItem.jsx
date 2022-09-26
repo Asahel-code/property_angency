@@ -21,13 +21,13 @@ const CategoryItem = ({ catItem }) => {
             <div className="my-6 border grid xs:grid-cols-1 md:grid-cols-3 bg-white rounded-xl">
                 <div className="w-full pb-4 md:pr-4 sm:pr-0">
                     <div className="mb-3 w-full">
-                        <img className="w-full h-60" src={`https://real-estate-agency-mark.herokuapp.com/${previewImg}`} alt="preview" />
+                        <img className="w-full h-60" src={previewImg} alt="preview" />
                     </div>
                     <div className="grid grid-cols-3 gap-4 w-full">
                         {catItem.images.map((item, index) => {
                             return (
                                 <div className="cursor-pointer" key={index} onClick={() => setPreviewImg(item)}>
-                                    <img className="w-32 h-12" src={`https://real-estate-agency-mark.herokuapp.com/${item}`} alt="hello" />
+                                    <img className="w-32 h-12" src={item} alt="hello" />
                                 </div>
                             )
                         })}

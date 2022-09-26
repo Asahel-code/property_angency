@@ -1,9 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "https://real-estate-agency-mark.herokuapp.com/api/v1";
-// const TOKEN =
-//   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
-//     .accessToken || "";
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 
