@@ -25,7 +25,7 @@ const Search = () => {
     useEffect(() => {
         dispatch(getCategories())
             .then(() => {
-                if(isLoaded){
+                if (isLoaded) {
                     setCategoryList(category)
                 }
             })
@@ -38,11 +38,8 @@ const Search = () => {
         setLoading(true)
         dispatch(searchProperties({ propertyCategory, subCategory, location, price }))
             .then(() => {
-                setTimeout(() => {
-                    navigate('/search_results');
-                    setLoading(false)
-                }, 1000)
-
+                navigate('/search_results');
+                setLoading(false);
             })
             .catch((error) => console.log(error.message))
     }
