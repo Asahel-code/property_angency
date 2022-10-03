@@ -9,11 +9,16 @@ import Home from "../pages/userpages/Home"
 import ItemDetails from "../pages/userpages/ItemDetails"
 import SubCategory from "../pages/userpages/SubCategory"
 import Contact from "../pages/userpages/Contact"
+import SearchResult from "../pages/userpages/SearchResult"
 
 export const useRouter = () => [
     {
         path: "/",
         element: <Home />,
+    },
+    {
+        path: "/search_results",
+        element: <SearchResult />,
     },
     {
         path: "/:category",
@@ -29,7 +34,7 @@ export const useRouter = () => [
     },
     {
         path: "/contact",
-        element: <Contact/>,
+        element: <Contact />,
     },
     {
         path: "/admin/dashboard",
@@ -41,7 +46,7 @@ export const useRouter = () => [
     },
     {
         path: "/admin/add-category",
-        element: <AddCategory/>,
+        element: <AddCategory />,
     },
     {
         path: "/admin/view-property/:propertyName",
@@ -49,10 +54,10 @@ export const useRouter = () => [
     },
     {
         path: "/admin/login",
-        element: <Login/>,
+        element: <Login />,
     },
     {
         path: "/admin/register",
-        element: <Signup/>,
+        element: <Signup />,
     },
 ]

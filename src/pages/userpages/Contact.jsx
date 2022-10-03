@@ -4,13 +4,13 @@ import Helmet from '../../components/Helemet';
 
 const Contact = () => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [subject, setSuject] = useState("");
     const [contactMessage, setContactMessage] = useState("");
 
     const handleSubmit = () => {
-        console.log(firstName, lastName, email, contactMessage)
+        console.log(name, email, subject, contactMessage)
     }
 
     return (
@@ -27,31 +27,16 @@ const Contact = () => {
                             <div>
                                 <div className="mb-2 block">
                                     <Label
-                                        htmlFor="fname"
-                                        value="First name"
+                                        htmlFor="name"
+                                        value="Name"
                                     />
                                 </div>
                                 <TextInput
-                                    id="fname"
+                                    id="name"
                                     type="text"
-                                    placeholder="Input your first name"
+                                    placeholder="Input your name"
                                     required={true}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label
-                                        htmlFor="lname"
-                                        value="Last name"
-                                    />
-                                </div>
-                                <TextInput
-                                    id="lname"
-                                    type="text"
-                                    placeholder="Input your last name"
-                                    required={true}
-                                    onChange={(e) => setLastName(e.target.value)}
+                                    onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -67,6 +52,21 @@ const Contact = () => {
                                     placeholder="Input your email"
                                     required={true}
                                     onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label
+                                        htmlFor="subject"
+                                        value="Subject"
+                                    />
+                                </div>
+                                <TextInput
+                                    id="subject"
+                                    type="text"
+                                    placeholder="Input your email"
+                                    required={true}
+                                    onChange={(e) => setSuject(e.target.value)}
                                 />
                             </div>
                             <div id="textarea">

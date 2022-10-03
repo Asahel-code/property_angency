@@ -60,7 +60,7 @@ const FooterSection = () => {
                     <Footer.Divider />
                     <div className="w-full sm:flex sm:items-center sm:justify-between">
                         <Footer.Copyright
-                            by="Real Estate Angency"
+                            by="Real Estate Agency"
                             year={2022}
                         />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">

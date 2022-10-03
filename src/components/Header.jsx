@@ -15,6 +15,8 @@ const Header = () => {
 
     const { user: currentUser } = useSelector((state) => state.auth);
     const { category } = useSelector((state) => state.category);
+    const { isLoaded } = useSelector((state) => state.category);
+    const [categoryList, setCategoryList] = useState([]);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,8 +26,13 @@ const Header = () => {
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false)
         );
-        dispatch(getCategories());
-    }, [dispatch]);
+        dispatch(getCategories())
+        .then(() => {
+            if(isLoaded){
+                setCategoryList(category)
+            }
+        })
+    }, [dispatch, category, isLoaded]);
 
     const handleLogout = () => {
         dispatch(logout())
@@ -73,7 +80,7 @@ const Header = () => {
 
     const userNavList = (
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            {category && category.map((cat, index) => {
+            {categoryList && categoryList.map((cat, index) => {
                 return (
                     <div key={index}>
                         {!cat.subCategory.length ? (<Typography
@@ -103,15 +110,11 @@ const Header = () => {
                                                 <Link className="hover:text-blue-700 text-md" to={`/${cat.name}/${dropDownItem.name}`}>{dropDownItem.name}</Link>
                                             </Dropdown.Item>
                                         ))}
-
                                     </Dropdown>
                                 </Typography>
                             )
                         }
                     </div>
-
-
-
                 )
             })}
 

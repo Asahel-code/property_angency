@@ -11,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const { isLoggedIn } = useSelector((state) => state.auth);
+    const { message } = useSelector((state) => state.message);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -33,8 +34,6 @@ const Login = () => {
                 console.log(error)
             })
     }
-
-
     return (
         <Helemet title="Login">
             <div className="flex justify-center items-center">
@@ -43,6 +42,11 @@ const Login = () => {
                         <div className="text-center pb-2 pt-6">
                             <h4 className="font-bold text-3xl text-blue-900">Welcome back</h4>
                         </div>
+                        {message &&
+                            <div className="py-4 text-center bg-red-300">
+                                <h4 className="text-red-600">{message}</h4>
+                            </div>
+                        }
                         <form className="flex flex-col gap-4 py-2 lg:px-8 md:px-6 xs:px-4" onSubmit={handleSubmit}>
                             <div className="w-full">
                                 <div className="mb-2 block">
@@ -86,7 +90,6 @@ const Login = () => {
                 </div>
             </div>
         </Helemet>
-
     )
 }
 

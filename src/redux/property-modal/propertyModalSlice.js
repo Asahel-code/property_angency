@@ -8,9 +8,27 @@ export const getProperties = createAsyncThunk(
     "propertiesModalSlice/getProperties",
     async (thunkAPI) => {
         try {
-            const response = await PropertyService.getProperties();
-            thunkAPI.dispatch(setMessage(response.data.message));
-            return response.data;
+            const data = await PropertyService.getProperties();
+            return {properties : data};
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            thunkAPI.dispatch(setMessage(message));
+            return thunkAPI.rejectWithValue();
+        }
+    }
+);
+
+export const searchProperties = createAsyncThunk(
+    "propertiesModalSlice/searchProperties",
+    async ({ propertyCategory, subCategory, location, price }, thunkAPI) => {
+        try {
+            const data = await PropertyService.searchProperties(propertyCategory, subCategory, location, price);
+            return {properties : data};
         } catch (error) {
             const message =
                 (error.response &&
@@ -28,8 +46,8 @@ export const addProperty = createAsyncThunk(
     "propertyModalSlice/addProperty",
     async (formData, thunkAPI) => {
         try {
-            const response = await PropertyService.addProperty(formData);
-            return response.data;
+            const data = await PropertyService.addProperty(formData);
+            return {properties : data};
         } catch (error) {
             const message =
                 (error.response &&
@@ -47,9 +65,8 @@ export const updateProperty = createAsyncThunk(
     "propertyModalSlice/updateProperty",
     async ({ formData, name }, thunkAPI) => {
         try {
-            const response = await PropertyService.updateProperty(formData, name);
-            thunkAPI.dispatch(setMessage(response.data.message));
-            return response.data;
+            const data = await PropertyService.updateProperty(formData, name);
+            return {properties : data};
         } catch (error) {
             const message =
                 (error.response &&
@@ -82,6 +99,15 @@ const propertySlice = createSlice({
         },
         [getProperties.rejected]: (state, action) => {
             state.isLoaded = false;
+            state.properties = null;
+        },
+        [searchProperties.fulfilled]: (state, action) => {
+            state.isLoaded = true;
+            state.properties = action.payload.properties;
+        },
+        [searchProperties.rejected]: (state, action) => {
+            state.isLoaded = false;
+            state.properties = null;
         },
         [addProperty.fulfilled]: (state, action) => {
             state.isLoaded = true;
@@ -89,6 +115,7 @@ const propertySlice = createSlice({
         },
         [addProperty.rejected]: (state, action) => {
             state.isLoaded = false;
+            state.properties = null;
         },
         [updateProperty.fulfilled]: (state, action) => {
             state.isLoaded = true;
@@ -96,6 +123,7 @@ const propertySlice = createSlice({
         },
         [updateProperty.rejected]: (state, action) => {
             state.isLoaded = false;
+            state.properties = null;
         },
         [deleteProperty.fulfilled]: (state, action) => {
             state.isLoaded = false;

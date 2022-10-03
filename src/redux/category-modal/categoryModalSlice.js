@@ -8,9 +8,8 @@ export const getCategories = createAsyncThunk(
     "categoryModalSlice/getCategories",
     async (thunkAPI) => {
         try {
-            const response = await CategoryService.getCategories();
-            thunkAPI.dispatch(setMessage(response.data.message));
-            return response.data;
+            const data = await CategoryService.getCategories();
+            return {category: data};
         } catch (error) {
             const message =
                 (error.response &&
@@ -28,8 +27,8 @@ export const addCategory = createAsyncThunk(
     "categoryModalSlice/addCategory",
     async ({ categoryName, subCategory }, thunkAPI) => {
         try {
-            const response = await CategoryService.addCategory(categoryName, subCategory);
-            return response.data;
+            const data = await CategoryService.addCategory(categoryName, subCategory);
+            return {category: data};
         } catch (error) {
             const message =
                 (error.response &&
