@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Pagination } from "flowbite-react";
 import Search from "../../components/Search";
 import ContactButtonSection from "../../components/ContactButtonSection";
@@ -11,6 +11,16 @@ import { useSelector } from 'react-redux';
 const SearchResult = () => {
 
     const { properties } = useSelector((state) => state.property);
+    const { isLoaded } = useSelector((state) => state.property);
+    const [propertyList, setPropertylist] = useState([]);
+
+
+    useEffect(() => {
+        if(isLoaded){
+            setPropertylist(properties)
+        }
+    }, [isLoaded, properties])
+
 
     return (
         <Helemet title="Search Results">
@@ -20,13 +30,13 @@ const SearchResult = () => {
                         <h5 className="pb-8">Search results</h5>
                     </div>
                     <div>
-                        {properties && !properties.length ? (
+                        {propertyList && !propertyList.length ? (
                             <EmptyCategory />
-                        ) : (properties && properties.map((item, index) =>
+                        ) : (propertyList && propertyList.map((item, index) =>
                             <CategoryItem key={index} catItem={item} />
                         ))}
 
-                        {properties && properties.length > 10 &&
+                        {propertyList && propertyList.length > 10 &&
                             <Pagination
                                 currentPage={1}
                                 totalPages={100}
