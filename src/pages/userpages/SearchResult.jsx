@@ -14,7 +14,7 @@ const SearchResult = () => {
 
     return (
         <Helemet title="Search Results">
-            <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-5 lg:mx-5 xs:mx-2">
+            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                 <div className="col-span-2 mt-5">
                     <div className="text-center">
                         <h5 className="pb-8">Search results</h5>
@@ -38,7 +38,7 @@ const SearchResult = () => {
                         </div>
                     </div>
                 </div>
-                <div className="lg:block sm:hidden">
+                <div className="lg:block xs:hidden">
                     <Search />
                 </div>
             </div>
