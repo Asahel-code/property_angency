@@ -26,12 +26,21 @@ const Header = () => {
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false)
         );
-        dispatch(getCategories())
-        .then(() => {
-            if(isLoaded){
-                setCategoryList(category)
-            }
-        })
+        let isMounted = true;
+        if (isMounted) {
+            dispatch(getCategories())
+                .unwrap()
+                .then(() => {
+                    if (isLoaded) {
+                        setCategoryList(category)
+                    }
+                })
+        }
+
+        return () => {
+            isMounted = false;
+        }
+
     }, [dispatch, category, isLoaded]);
 
     const handleLogout = () => {
@@ -67,7 +76,7 @@ const Header = () => {
                     arrowIcon={false}
                     label="Admin"
                 >
-                     <Dropdown.Item>
+                    <Dropdown.Item>
                         <Link to="/admin/dashboard" className="hover:text-blue-700 text-md">Dashboard</Link>
                     </Dropdown.Item>
                     <Dropdown.Item onClick={handleLogout} className="hover:text-blue-700 text-md">

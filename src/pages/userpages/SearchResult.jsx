@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Pagination } from "flowbite-react";
 import Search from "../../components/Search";
 import ContactButtonSection from "../../components/ContactButtonSection";
@@ -16,8 +16,15 @@ const SearchResult = () => {
 
 
     useEffect(() => {
-        if(isLoaded){
-            setPropertylist(properties)
+        let isMounted = true;
+        if (isMounted) {
+            if (isLoaded) {
+                setPropertylist(properties)
+            }
+        }
+
+        return () => {
+            isMounted = false;
         }
     }, [isLoaded, properties])
 

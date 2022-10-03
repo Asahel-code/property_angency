@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, TextInput, Label } from 'flowbite-react';
+import { Button, TextInput, Label, Spinner } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/user-modal/userModalSlice';
 import Helemet from '../../components/Helemet';
@@ -9,6 +9,7 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     const { isLoggedIn } = useSelector((state) => state.auth);
     const { message } = useSelector((state) => state.message);
@@ -24,11 +25,13 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
 
         dispatch(login({ email, password }))
             .unwrap()
             .then(() => {
                 navigate('/admin/dashboard')
+                setLoading(false)
             })
             .catch((error) => {
                 console.log(error)
@@ -77,9 +80,12 @@ const Login = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
-                            <Button type="submit" style={{ width: "100%" }}>
-                                Submit
-                            </Button>
+                            {isLoading ? <Button style={{ width: "100%" }}>
+                                <Spinner aria-label="Spinner button example" />
+                                <span className="pl-3">
+                                    Login in...
+                                </span>
+                            </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
                             <div className="flex items-center justify-start gap-2 text-sm">
                                 <div>
                                     <Link to="#" className="hover:text-blue-600">Forgot your password?</Link>

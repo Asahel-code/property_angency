@@ -1,15 +1,11 @@
 import { publicRequest, userRequest } from "../utils/requestHeader";
 
 const getProperties = async () => {
-    try{
-        return await publicRequest.get("/property")
+    return await publicRequest.get("/property")
         .then((response) => {
             localStorage.setItem("properties", JSON.stringify(response.data));
             return response.data;
         });
-    }
-    catch(error) {console.log(error.message)}
-    
 };
 
 const searchProperties = async (propertyCategory, subCategory, location, price) => {

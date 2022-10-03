@@ -57,6 +57,7 @@ const categorySlice = createSlice({
         },
         [getCategories.rejected]: (state, action) => {
             state.isLoaded = false;
+            state.category = null;
         },
         [addCategory.fulfilled]: (state, action) => {
             state.isLoaded = true;

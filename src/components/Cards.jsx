@@ -18,6 +18,7 @@ const Cards = () => {
         let isMounted = true;
         if (isMounted) {
             dispatch(getProperties())
+                .unwrap()
                 .then(() => {
                     if (isLoaded) {
                         setPropertyList(properties);

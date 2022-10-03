@@ -23,15 +23,24 @@ const Search = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCategories())
-            .then(() => {
-                if (isLoaded) {
-                    setCategoryList(category)
-                }
-            })
         if (propertyCategory === "Land") {
             setSubCategory("")
         }
+
+        let isMounted = true;
+        if (isMounted) {
+            dispatch(getCategories())
+                .then(() => {
+                    if (isLoaded) {
+                        setCategoryList(category)
+                    }
+                })
+        }
+
+        return () => {
+            isMounted = false;
+        }
+
     }, [dispatch, propertyCategory, category, isLoaded])
 
     const handleSearch = () => {
