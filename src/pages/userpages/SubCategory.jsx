@@ -6,20 +6,38 @@ import CategoryItem from "../../components/CategoryItem";
 import EmptyCategory from "../../components/EmptyCategory";
 import Search from "../../components/Search";
 import ContactButtonSection from "../../components/ContactButtonSection";
-import { useSelector } from 'react-redux';
 import Helmet from '../../components/Helemet';
+import { publicRequest } from '../../utils/requestHeader';
+import axios from 'axios';
 
 const SubCategory = () => {
 
-    const { properties } = useSelector((state) => state.property);
     const [subCategoryItems, setSubCategoryItems] = useState([]);
 
     let { category } = useParams();
     let { subCategory } = useParams();
 
     useEffect(() => {
-        setSubCategoryItems(properties.filter((e) => e.subCategory === subCategory))
-    }, [subCategory, properties])
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/property", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setSubCategoryItems(response.data.filter((property) => property.subCategory === subCategory))
+                localStorage.setItem("properties", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
+
+        return () => {
+            cancelToken.cancel()
+        }
+      
+    }, [subCategory])
 
     return (
         <Helmet title={subCategory}>

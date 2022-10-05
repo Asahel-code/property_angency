@@ -3,30 +3,47 @@ import { Table, Button, TextInput, Pagination } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
 import numberWithCommas from '../../utils/numberWithCommas';
-import { getProperties, deleteProperty } from '../../redux/property-modal/propertyModalSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { deleteProperty } from '../../redux/property-modal/propertyModalSlice';
+import { useDispatch } from 'react-redux';
 import EmptyCategory from '../EmptyCategory';
 import { toast } from 'react-toastify';
+import { publicRequest } from '../../utils/requestHeader';
+import axios from 'axios';
 
 const PropertItem = () => {
 
     const [searchField, setSearchField] = useState("");
-    const { properties } = useSelector((state) => state.property);
+    const [propertyList, setPropertyList] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProperties());
-    }, [dispatch]);
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/property", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setPropertyList(response.data);
+                localStorage.setItem("properties", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
+
+        return (() => {
+            cancelToken.cancel()
+        })
+    }, []);
 
     const handleDelete = (propertyName) => {
         dispatch(deleteProperty(propertyName))
             .unwrap()
             .then(() => {
                 toast.error('Property deleated successfully!!');
-                // eslint-disable-next-line no-restricted-globals
-                location.reload()
             })
-            .catch((error) => console.log(error.message))
+
     }
     return (
         <div>
@@ -72,9 +89,9 @@ const PropertItem = () => {
                     </Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
-                    {properties && !properties.length ? (
+                    {propertyList && !propertyList.length ? (
                         <EmptyCategory />
-                    ) : (properties && properties.filter((property) => {
+                    ) : (propertyList && propertyList.filter((property) => {
                         return (
                             property === "" ? property :
                                 property.name.toLowerCase().includes(searchField.toLowerCase()) ||
@@ -110,7 +127,7 @@ const PropertItem = () => {
                 </Table.Body>
             </Table>
             <div className="flex justify-end my-5">
-                {properties && properties.length > 10 &&
+                {propertyList && propertyList.length > 10 &&
                     <Pagination
                         currentPage={1}
                         // onPageChange={onPageChange}

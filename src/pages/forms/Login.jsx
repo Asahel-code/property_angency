@@ -4,6 +4,7 @@ import { Button, TextInput, Label, Spinner } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/user-modal/userModalSlice';
 import Helemet from '../../components/Helemet';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -34,9 +35,12 @@ const Login = () => {
                 setLoading(false)
             })
             .catch((error) => {
+                setLoading(false);
+                toast.error(message);
                 console.log(error)
             })
     }
+    
     return (
         <Helemet title="Login">
             <div className="flex justify-center items-center">
@@ -45,11 +49,6 @@ const Login = () => {
                         <div className="text-center pb-2 pt-6">
                             <h4 className="font-bold text-3xl text-blue-900">Welcome back</h4>
                         </div>
-                        {message &&
-                            <div className="py-4 text-center bg-red-300">
-                                <h4 className="text-red-600">{message}</h4>
-                            </div>
-                        }
                         <form className="flex flex-col gap-4 py-2 lg:px-8 md:px-6 xs:px-4" onSubmit={handleSubmit}>
                             <div className="w-full">
                                 <div className="mb-2 block">

@@ -1,6 +1,9 @@
-import { Label, TextInput, Button, Textarea } from 'flowbite-react';
+import { Label, TextInput, Button, Textarea, Spinner } from 'flowbite-react';
 import { useState } from 'react';
 import Helmet from '../../components/Helemet';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactUs } from '../../redux/contactus-modal/contactUsModalSlice';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
 
@@ -8,9 +11,26 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [subject, setSuject] = useState("");
     const [contactMessage, setContactMessage] = useState("");
+    const [isLoading, setLoading] = useState(false);
+    const { message } = useSelector((state) => state.message);
 
-    const handleSubmit = () => {
-        console.log(name, email, subject, contactMessage)
+
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        dispatch(contactUs({ name, email, subject, contactMessage }))
+            .unwrap()
+            .then(() => {
+                setLoading(false);
+                toast.success(message);
+            })
+            .catch((error) => {
+                setLoading(false);
+                toast.error(message);
+                console.log(error.message)
+            })
     }
 
     return (
@@ -64,7 +84,7 @@ const Contact = () => {
                                 <TextInput
                                     id="subject"
                                     type="text"
-                                    placeholder="Input your email"
+                                    placeholder="Input your subject"
                                     required={true}
                                     onChange={(e) => setSuject(e.target.value)}
                                 />
@@ -85,9 +105,12 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="w-full">
-                                <Button type="submit" style={{ width: "100%" }}>
-                                    Submit
-                                </Button>
+                                {isLoading ? <Button style={{ width: "100%" }}>
+                                    <Spinner aria-label="Spinner button example" />
+                                    <span className="pl-3">
+                                        Sending...
+                                    </span>
+                                </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
                             </div>
                         </form>
                     </div>

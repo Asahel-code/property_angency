@@ -8,14 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Dropdown, Navbar } from "flowbite-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user-modal/userModalSlice';
-import { getCategories } from '../redux/category-modal/categoryModalSlice';
+import { publicRequest } from '../utils/requestHeader';
+import axios from 'axios';
+
 
 const Header = () => {
     const [openNav, setOpenNav] = useState(false);
 
     const { user: currentUser } = useSelector((state) => state.auth);
-    const { category } = useSelector((state) => state.category);
-    const { isLoaded } = useSelector((state) => state.category);
     const [categoryList, setCategoryList] = useState([]);
 
     const dispatch = useDispatch();
@@ -26,22 +26,27 @@ const Header = () => {
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false)
         );
-        let isMounted = true;
-        if (isMounted) {
-            dispatch(getCategories())
-                .unwrap()
-                .then(() => {
-                    if (isLoaded) {
-                        setCategoryList(category)
-                    }
-                })
-        }
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/category", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setCategoryList(response.data);
+                localStorage.setItem("category", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
 
         return () => {
-            isMounted = false;
+            cancelToken.cancel()
         }
 
-    }, [dispatch, category, isLoaded]);
+        
+    }, []);
 
     const handleLogout = () => {
         dispatch(logout())

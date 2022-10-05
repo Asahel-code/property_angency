@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextInput, Label } from 'flowbite-react';
+import { Button, TextInput, Label, Spinner } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/user-modal/userModalSlice';
 import Helmet from '../../components/Helemet';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
 
@@ -11,6 +12,7 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     const { isLoggedIn } = useSelector((state) => state.auth);
     const { message } = useSelector((state) => state.message);
@@ -26,14 +28,19 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setLoading(true)
         dispatch(register({ username, email, password, passwordConfirmation }))
             .unwrap()
             .then(() => {
+                console.log(message);
+                toast.success(message);
                 navigate("/admin/login");
+                setLoading(false);
             })
             .catch((error) => {
-                console.log(error.message)
+                toast.error(message);
+                console.log(error.message);
+                setLoading(false);
             });
 
     }
@@ -46,11 +53,6 @@ const Signup = () => {
                         <div className="text-center pb-2 pt-6">
                             <h4 className="font-bold text-3xl text-blue-900">Lets create your account</h4>
                         </div>
-                        {message &&
-                            <div className="py-4 text-center bg-red-300">
-                                <h4 className="text-red-600">{message}</h4>
-                            </div>
-                        }
                         <form className="flex flex-col gap-4 py-2 lg:px-8 md:px-6 xs:px-4" onSubmit={handleSubmit}>
                             <div>
                                 <div className="mb-2 block">
@@ -110,9 +112,12 @@ const Signup = () => {
                                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                                 />
                             </div>
-                            <Button type="submit" style={{ width: "100%" }}>
-                                Submit
-                            </Button>
+                            {isLoading ? <Button style={{ width: "100%" }}>
+                                <Spinner aria-label="Spinner button example" />
+                                <span className="pl-3">
+                                    Creating...
+                                </span>
+                            </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
                             <div className="text-sm">
                                 Already created your account?,<Link className="hover:text-blue-600" to="/admin/login"> Sign in</Link>
                             </div>
@@ -121,7 +126,6 @@ const Signup = () => {
                 </div>
             </div>
         </Helmet>
-
     )
 }
 

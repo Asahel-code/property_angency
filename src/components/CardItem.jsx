@@ -1,33 +1,46 @@
-import { Card } from 'flowbite-react';
+
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+} from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 import { BsGeoAlt } from "react-icons/bs";
-import numberWithCommas from '../utils/numberWithCommas';
+import numberWithCommas from '../utils/numberWithCommas'
+
 
 const CardItem = ({ property }) => {
   return (
     <div>
       <Link to={`/${property.category}/${property.subCategory ? property.subCategory : property.category}/${property.name}`}>
-        <div className="max-w-sm">
-          <Card imgSrc={property.images[0]}>
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <Card className="w-72">
+          <CardHeader color="blue" className="relative h-56 m-0 rounded-b-none">
+            <img
+              src={property.images[0]}
+              alt="property"
+              className="h-full w-full"
+            />
+          </CardHeader>
+          <CardBody className="text-justify">
+            <Typography variant="h5" className="mb-2">
               Ksh.{numberWithCommas(Number(property.price))}
-            </h5>
+            </Typography>
             <div className="flex items-center gap-4">
-              <p className="text-blue-700 md:text-lg xs:text-md">
+              <Typography className="text-blue-700 md:text-lg xs:text-md">
                 <BsGeoAlt />
-              </p>
-              <p className="text-gray-400 text-sm">
+              </Typography>
+              <Typography className="text-gray-400 text-sm">
                 {property.location}
-              </p>
+              </Typography>
             </div>
-
-            <p className="font-light text-gray-700 ">
+            <Typography>
               {property.description.length > 100 ?
                 `${property.description.substring(0, 100)}...` : property.description
               }
-            </p>
-          </Card>
-        </div>
+            </Typography>
+          </CardBody>
+        </Card>
       </Link>
     </div>
   )

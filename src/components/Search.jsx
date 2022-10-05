@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Select, TextInput, Spinner } from "flowbite-react";
-import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../redux/category-modal/categoryModalSlice';
+import { useDispatch } from 'react-redux';
 import { searchProperties } from '../redux/property-modal/propertyModalSlice';
 import { useNavigate } from 'react-router-dom';
+import { publicRequest } from '../utils/requestHeader';
+import axios from 'axios';
 
 
 const Search = () => {
@@ -17,8 +18,6 @@ const Search = () => {
     const navigate = useNavigate();
 
     const categoryNavStyle = "py-2 px-4 uppercase text-white text-xl cursor-pointer";
-    const { category } = useSelector((state) => state.category);
-    const { isLoaded } = useSelector((state) => state.category)
 
     const dispatch = useDispatch();
 
@@ -27,21 +26,26 @@ const Search = () => {
             setSubCategory("")
         }
 
-        let isMounted = true;
-        if (isMounted) {
-            dispatch(getCategories())
-                .then(() => {
-                    if (isLoaded) {
-                        setCategoryList(category)
-                    }
-                })
-        }
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/category", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setCategoryList(response.data);
+                localStorage.setItem("category", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
 
         return () => {
-            isMounted = false;
+            cancelToken.cancel()
         }
 
-    }, [dispatch, propertyCategory, category, isLoaded])
+    }, [propertyCategory])
 
     const handleSearch = () => {
         setLoading(true)
@@ -61,7 +65,7 @@ const Search = () => {
                         <div className={propertyCategory === "Real Estate" ? `${categoryNavStyle} bg-blue-600` : `${categoryNavStyle} bg-gray-500`} onClick={() => setPropertyCategory("Real Estate")}>Real Estate</div>
                         <div className={propertyCategory === "Land" ? `${categoryNavStyle} bg-blue-600` : `${categoryNavStyle} bg-gray-500`} onClick={() => setPropertyCategory("Land")}>Land</div>
                     </div>
-                    <div className="grid grid-cols-4 xs:grid-cols-1 gap-4 py-5 px-4 bg-cyan-300 opacity-80">
+                    <div className="grid md:grid-cols-4 xs:grid-cols-1 gap-4 py-5 px-4 bg-cyan-300 opacity-80">
                         {propertyCategory === "Real Estate" &&
                             <Select
                                 id="subCategory"

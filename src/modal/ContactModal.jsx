@@ -1,5 +1,8 @@
-import { Modal, Label, TextInput, Checkbox, Button, Textarea } from 'flowbite-react';
+import { Modal, Label, TextInput, Checkbox, Button, Textarea, Spinner } from 'flowbite-react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { propertySellsContact } from '../redux/contactus-modal/contactUsModalSlice';
+import { toast } from 'react-toastify';
 
 const ContactModal = ({ closeModal }) => {
 
@@ -8,10 +11,28 @@ const ContactModal = ({ closeModal }) => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [contactMessage, setContactMessage] = useState("");
     const [titleDeadStatus, setTitleDeadStatus] = useState(false);
+    const [isLoading, setLoading] = useState(false);
+    const { message } = useSelector((state) => state.message);
+
+    const dispatch = useDispatch();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, email, phoneNumber, contactMessage, titleDeadStatus);
+        setLoading(true);
+
+        dispatch(propertySellsContact({name, email, phoneNumber, contactMessage, titleDeadStatus}))
+        .unwrap()
+        .then(() => {
+            setLoading(false);
+            toast.success(message);
+            closeModal();
+        })
+        .catch((error) => {
+            setLoading(false);
+            toast.error(message);
+            console.log(error.message);
+        })
     }
     return (
         <div>
@@ -98,9 +119,12 @@ const ContactModal = ({ closeModal }) => {
                                 </Label>
                             </div>
                             <div className="w-full">
-                                <Button style={{ width: "100%" }} onClick={closeModal} >
-                                    Submit
-                                </Button>
+                                {isLoading ? <Button style={{ width: "100%" }}>
+                                    <Spinner aria-label="Spinner button example" />
+                                    <span className="pl-3">
+                                        Sending...
+                                    </span>
+                                </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
                             </div>
                         </div>
                     </Modal.Body>

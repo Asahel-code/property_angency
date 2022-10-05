@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Label, TextInput, Button, Select, Textarea, FileInput, Avatar } from 'flowbite-react';
+import { Label, TextInput, Button, Select, Textarea, FileInput, Avatar, Spinner } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../redux/category-modal/categoryModalSlice';
 import { addProperty } from '../../redux/property-modal/propertyModalSlice';
@@ -17,6 +17,7 @@ const AddProperty = () => {
     const [images, setImages] = useState([]);
     const [phoneNumberContact, setPhoneNumberContact] = useState("");
     const [whatsappContact, setWhatsappContact] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     const { category } = useSelector((state) => state.category);
 
@@ -39,6 +40,7 @@ const AddProperty = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
 
         const formData = new FormData();
         formData.append('name', name);
@@ -57,10 +59,8 @@ const AddProperty = () => {
             .unwrap()
             .then(() => {
                 toast.success('Property is added successfull');
-                setTimeout(() => {
-                    navigate("/admin/dashboard");
-                }, 2500);
-
+                navigate("/admin/dashboard");
+                setLoading(false);
             })
             .catch((error) => console.log(error.message))
     }
@@ -253,12 +253,12 @@ const AddProperty = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Button
-                                type="submit"
-                                size="lg"
-                                style={{ width: "300px" }}>
-                                Add
-                            </Button>
+                            {isLoading ? <Button size="lg" style={{ width: "300px" }}>
+                                <Spinner aria-label="Spinner button example" />
+                                <span className="pl-3">
+                                    Adding...
+                                </span>
+                            </Button> : <Button type="submit" size="lg" style={{ width: "300px" }}>Add</Button>}
                         </div>
                     </div>
                 </form>
