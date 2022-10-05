@@ -1,53 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, TextInput, Label, Spinner } from 'flowbite-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/user-modal/userModalSlice';
 import Helemet from '../../components/Helemet';
+import { resetPassword } from '../../redux/user-modal/userModalSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const Login = () => {
+const ResetPassword = () => {
 
     const [email, setEmail] = useState("");
+    const [token, setToken] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [isLoading, setLoading] = useState(false);
-
-    const { isLoggedIn } = useSelector((state) => state.auth);
     const { errorMessage } = useSelector((state) => state.errorMessage);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (isLoggedIn) {
-            navigate('/admin/dashboard')
-        }
-    }, [isLoggedIn, navigate])
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true)
-
-        dispatch(login({ email, password }))
-            .unwrap()
-            .then(() => {
-                navigate('/admin/dashboard')
-                setLoading(false)
-            })
-            .catch((error) => {
-                setLoading(false);
-                toast.error(errorMessage);
-                console.log(error)
-            })
+        setLoading(true);
+        
+        dispatch(resetPassword({ email, token, password, passwordConfirmation}))
+        .unwrap()
+        .then(() => {
+            setLoading(false);
+            toast.success("Your password has been reset successfully");
+            navigate("/admin/login");
+        })
+        .catch((error) => {
+            setLoading(false);
+            toast.error(errorMessage);
+            console.log(error.message);
+        })
     }
-    
-    return (
-        <Helemet title="Login">
+
+  return (
+<Helemet title="Reset password">
             <div className="flex justify-center items-center">
                 <div className="bg-white md:rounded-3xl border my-10 md:w-2/5 xs:w-full">
                     <div className="w-full">
                         <div className="text-center pb-2 pt-6">
-                            <h4 className="font-bold text-3xl text-blue-900">Welcome back</h4>
+                            <h4 className="font-bold text-3xl text-blue-900">Reset password</h4>
                         </div>
                         <form className="flex flex-col gap-4 py-2 lg:px-8 md:px-6 xs:px-4" onSubmit={handleSubmit}>
                             <div className="w-full">
@@ -68,6 +63,21 @@ const Login = () => {
                             <div>
                                 <div className="mb-2 block">
                                     <Label
+                                        htmlFor="token"
+                                        value="Your reset token"
+                                    />
+                                </div>
+                                <TextInput
+                                    id="token"
+                                    type="text"
+                                    placeholder="Your reset token"
+                                    required={true}
+                                    onChange={(e) => setToken(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label
                                         htmlFor="password1"
                                         value="Your password"
                                     />
@@ -79,23 +89,32 @@ const Login = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label
+                                        htmlFor="password2"
+                                        value="Confirm your password"
+                                    />
+                                </div>
+                                <TextInput
+                                    id="password2"
+                                    type="password"
+                                    required={true}
+                                    onChange={(e) => setPasswordConfirmation(e.target.value)}
+                                />
+                            </div>
                             {isLoading ? <Button style={{ width: "100%" }}>
                                 <Spinner aria-label="Spinner button example" />
                                 <span className="pl-3">
-                                    Login in...
+                                    Reseting...
                                 </span>
                             </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
-                            <div className="flex items-center justify-start gap-2 text-sm">
-                                <div>
-                                    <Link to="/admin/request-password-reset" className="hover:text-blue-600">Forgot your password?</Link>
-                                </div>
-                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </Helemet>
-    )
+  )
 }
 
-export default Login
+export default ResetPassword

@@ -24,6 +24,24 @@ const login = async (email, password) => {
         });
 };
 
+
+const requestPasswordReset = async (email) => {
+    return await publicRequest.post("/auth/passwordResetRequest", {
+            email,
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const resetPassword = async (email, token, password, passwordConfirmation) => {
+    return await publicRequest.post("/auth/resetPassword", {
+            email,token, password, passwordConfirmation
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
 // const verifyEmail = async (userId, otp) => {
 //     return axios.post(`${API_URL}email/verify-email`, {
 //         userId,
@@ -45,6 +63,8 @@ const logout = async () => {
 const AuthService = {
     register,
     login,
+    requestPasswordReset,
+    resetPassword,
     // verifyEmail,
     // resendEmailVerificationCode,
     logout,

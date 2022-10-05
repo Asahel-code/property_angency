@@ -12,7 +12,7 @@ const Contact = () => {
     const [subject, setSuject] = useState("");
     const [contactMessage, setContactMessage] = useState("");
     const [isLoading, setLoading] = useState(false);
-    const { message } = useSelector((state) => state.message);
+    const { errorMessage } = useSelector((state) => state.errorMessage);
 
 
     const dispatch = useDispatch();
@@ -24,12 +24,12 @@ const Contact = () => {
             .unwrap()
             .then(() => {
                 setLoading(false);
-                toast.success(message);
+                toast.success("Your message has been sent successfully");
             })
             .catch((error) => {
                 setLoading(false);
-                toast.error(message);
-                console.log(error.message)
+                toast.error(errorMessage);
+                console.log(error.message);
             })
     }
 

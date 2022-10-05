@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { setMessage } from '../message-modal/messageModalSlice';
+import { setErrorMessage } from '../message-modal/errorMessageModalSlice';
+import { setSuccessMessage } from '../message-modal/successMessageModalSlice';
 import PropertyService from '../../services/PropertyService';
 
 const properties = JSON.parse(localStorage.getItem("properties"));
@@ -17,7 +18,7 @@ export const getProperties = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }
@@ -36,7 +37,7 @@ export const searchProperties = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }
@@ -46,8 +47,9 @@ export const addProperty = createAsyncThunk(
     "propertyModalSlice/addProperty",
     async (formData, thunkAPI) => {
         try {
-            const data = await PropertyService.addProperty(formData);
-            return {properties : data};
+            const response = await PropertyService.addProperty(formData);
+            thunkAPI.dispatch(setSuccessMessage(response.message));
+            return response;
         } catch (error) {
             const message =
                 (error.response &&
@@ -55,7 +57,7 @@ export const addProperty = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }
@@ -74,7 +76,7 @@ export const updateProperty = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }

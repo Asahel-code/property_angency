@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextInput, Label } from 'flowbite-react';
 import { BsFillPlusCircleFill, BsDashCircleFill } from "react-icons/bs";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCategory } from '../../redux/category-modal/categoryModalSlice';
+import { toast } from 'react-toastify';
 
 const AddCategory = () => {
 
@@ -11,6 +12,7 @@ const AddCategory = () => {
     const [subCategory, setSubCategory] = useState([
         { name: "" },
     ]);
+    const { successMessage } = useSelector((state) => state.successMessage);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -37,9 +39,13 @@ const AddCategory = () => {
         dispatch(addCategory({ categoryName, subCategory }))
             .unwrap()
             .then(() => {
-                navigate('/admin/dashboard')
+                toast.success(successMessage);
+                navigate('/admin/dashboard');
             })
-            .catch((error) => console.log(error.message))
+            .catch((error) => {
+                toast.error(`${categoryName} has been added successfully`);
+                console.log(error.message)
+            })
     }
     return (
         <div className="flex justify-center items-center">

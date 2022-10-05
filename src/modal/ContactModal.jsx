@@ -12,7 +12,7 @@ const ContactModal = ({ closeModal }) => {
     const [contactMessage, setContactMessage] = useState("");
     const [titleDeadStatus, setTitleDeadStatus] = useState(false);
     const [isLoading, setLoading] = useState(false);
-    const { message } = useSelector((state) => state.message);
+    const { errorMessage } = useSelector((state) => state.errorMessage);
 
     const dispatch = useDispatch();
 
@@ -25,12 +25,12 @@ const ContactModal = ({ closeModal }) => {
         .unwrap()
         .then(() => {
             setLoading(false);
-            toast.success(message);
+            toast.success("Your message has been sent successfully");
             closeModal();
         })
         .catch((error) => {
             setLoading(false);
-            toast.error(message);
+            toast.error(errorMessage);
             console.log(error.message);
         })
     }

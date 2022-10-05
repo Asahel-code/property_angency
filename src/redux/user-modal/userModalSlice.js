@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { setMessage } from '../message-modal/messageModalSlice';
+import { setErrorMessage } from '../message-modal/errorMessageModalSlice';
+import { setSuccessMessage } from '../message-modal/successMessageModalSlice';
 import AuthService from '../../services/AuthService';
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,8 +10,8 @@ export const register = createAsyncThunk(
   async ({ username, email, password, passwordConfirmation }, thunkAPI) => {
     try {
       const response = await AuthService.register(username, email, password, passwordConfirmation);
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      thunkAPI.dispatch(setSuccessMessage(response.message));
+      return response;
     } catch (error) {
       const message =
         (error.response &&
@@ -18,7 +19,7 @@ export const register = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
       return thunkAPI.rejectWithValue();
     }
   }
@@ -37,7 +38,7 @@ export const login = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
       return thunkAPI.rejectWithValue();
     }
   }
@@ -48,7 +49,7 @@ export const verifyEmail = createAsyncThunk(
   async ({ userId, otp }, thunkAPI) => {
     try {
       const response = await AuthService.verifyEmail(userId, otp);
-      thunkAPI.dispatch(setMessage(response.data.message));
+      thunkAPI.dispatch(setSuccessMessage(response.data.message));
       return response.data;
     } catch (error) {
       const message =
@@ -57,18 +58,59 @@ export const verifyEmail = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
       return thunkAPI.rejectWithValue();
     }
   }
 );
+
+export const requestPasswordReset = createAsyncThunk(
+  "userModalSlice/requestPasswordReset",
+  async ({  email }, thunkAPI) => {
+    try {
+      const response = await AuthService.requestPasswordReset( email );
+      thunkAPI.dispatch(setSuccessMessage(response.message));
+      return response;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setErrorMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "userModalSlice/requestPasswordReset",
+  async ({  email, token, password, passwordConfirmation }, thunkAPI) => {
+    try {
+      const response = await AuthService.resetPassword( email, token, password, passwordConfirmation );
+      thunkAPI.dispatch(setSuccessMessage(response.message));
+      return response;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setErrorMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 
 export const resendVerifiactionEmailCode = createAsyncThunk(
   "userModalSlice/resendVerifiactionEmailCode",
   async ({ userId }, thunkAPI) => {
     try {
       const response = await AuthService.resendEmailVerificationCode(userId);
-      thunkAPI.dispatch(setMessage(response.data.message));
+      thunkAPI.dispatch(setErrorMessage(response.message));
       return response.data;
     } catch (error) {
       const message =
@@ -77,7 +119,7 @@ export const resendVerifiactionEmailCode = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
       return thunkAPI.rejectWithValue();
     }
   }

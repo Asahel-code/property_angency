@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import messageModalReducer from './message-modal/messageModalSlice';
+import errorMessageModalReducer from './message-modal/errorMessageModalSlice';
+import successMessageModalReducer from './message-modal/successMessageModalSlice';
 import userModalReducer from './user-modal/userModalSlice';
 import categoryModalReducer from './category-modal/categoryModalSlice';
 import porpertyModalReducer from './property-modal/propertyModalSlice';
  
 export const store = configureStore({
     reducer: {
-        message: messageModalReducer,
+        errorMessage: errorMessageModalReducer,
+        successMessage: successMessageModalReducer,
         auth: userModalReducer,
         category: categoryModalReducer,
         property: porpertyModalReducer,

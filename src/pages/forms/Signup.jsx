@@ -15,7 +15,7 @@ const Signup = () => {
     const [isLoading, setLoading] = useState(false);
 
     const { isLoggedIn } = useSelector((state) => state.auth);
-    const { message } = useSelector((state) => state.message);
+    const { errorMessage } = useSelector((state) => state.errorMessage);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,13 +32,12 @@ const Signup = () => {
         dispatch(register({ username, email, password, passwordConfirmation }))
             .unwrap()
             .then(() => {
-                console.log(message);
-                toast.success(message);
+                toast.success(`welcome ${username} your account has been created successfully`);
                 navigate("/admin/login");
                 setLoading(false);
             })
             .catch((error) => {
-                toast.error(message);
+                toast.error(errorMessage);
                 console.log(error.message);
                 setLoading(false);
             });

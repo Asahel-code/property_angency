@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Label, TextInput, Button, Select, Textarea, FileInput, Avatar, Spinner } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../redux/category-modal/categoryModalSlice';
 import { addProperty } from '../../redux/property-modal/propertyModalSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { publicRequest } from '../../utils/requestHeader';
 
 const AddProperty = () => {
 
@@ -18,8 +19,9 @@ const AddProperty = () => {
     const [phoneNumberContact, setPhoneNumberContact] = useState("");
     const [whatsappContact, setWhatsappContact] = useState("");
     const [isLoading, setLoading] = useState(false);
+    const [category, setCategory] = useState("");
 
-    const { category } = useSelector((state) => state.category);
+    const { errorMessage } = useSelector((state) => state.errorMessage);
 
     let subCategory = []
 
@@ -27,8 +29,25 @@ const AddProperty = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(getCategories())
-    }, [dispatch]);
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/category", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setCategory(response.data);
+                localStorage.setItem("category", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
+
+        return () => {
+            cancelToken.cancel()
+        }
+    }, []);
 
     category && category.forEach(element => {
         if (categoryItem === element.name) {
@@ -58,11 +77,14 @@ const AddProperty = () => {
         dispatch(addProperty(formData))
             .unwrap()
             .then(() => {
-                toast.success('Property is added successfull');
+                toast.success(`${name} property has been added successfully`);
                 navigate("/admin/dashboard");
                 setLoading(false);
             })
-            .catch((error) => console.log(error.message))
+            .catch((error) => {
+                toast.error(errorMessage);
+                console.log(error.message);
+            })
     }
 
 

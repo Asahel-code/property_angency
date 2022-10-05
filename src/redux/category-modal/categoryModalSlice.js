@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { setMessage } from '../message-modal/messageModalSlice';
+import { setErrorMessage } from '../message-modal/errorMessageModalSlice';
+import { setSuccessMessage } from '../message-modal/successMessageModalSlice';
 import CategoryService from '../../services/CategoryService';
 
 const category = JSON.parse(localStorage.getItem("category"));
@@ -17,7 +18,7 @@ export const getCategories = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }
@@ -27,8 +28,9 @@ export const addCategory = createAsyncThunk(
     "categoryModalSlice/addCategory",
     async ({ categoryName, subCategory }, thunkAPI) => {
         try {
-            const data = await CategoryService.addCategory(categoryName, subCategory);
-            return {category: data};
+            const response = await CategoryService.addCategory(categoryName, subCategory);
+            thunkAPI.dispatch(setSuccessMessage(response.message));
+            return response;
         } catch (error) {
             const message =
                 (error.response &&
@@ -36,7 +38,7 @@ export const addCategory = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }

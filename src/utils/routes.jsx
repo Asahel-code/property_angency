@@ -10,6 +10,8 @@ import PropertyDetails from "../pages/userpages/PropertyDetails"
 import SubCategory from "../pages/userpages/SubCategory"
 import Contact from "../pages/userpages/Contact"
 import SearchResult from "../pages/userpages/SearchResult"
+import RequestPasswordReset from "../pages/forms/RequestPasswordReset"
+import ResetPassword from "../pages/forms/ResetPassword"
 
 export const useRouter = () => [
     {
@@ -55,6 +57,14 @@ export const useRouter = () => [
     {
         path: "/admin/login",
         element: <Login />,
+    },
+    {
+        path: "/admin/request-password-reset",
+        element: <RequestPasswordReset />,
+    },
+    {
+        path: "/admin/password-reset",
+        element: <ResetPassword />,
     },
     {
         path: "/admin/register",

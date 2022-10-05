@@ -15,7 +15,6 @@ const addCategory = async (categoryName, subCategory) => {
         subCategory
     })
         .then((response) => {
-            localStorage.setItem("category", JSON.stringify(response.data));
             return response.data;
         });
 }

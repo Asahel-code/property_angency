@@ -19,7 +19,6 @@ const searchProperties = async (propertyCategory, subCategory, location, price) 
 const addProperty = async (formData) => {
     return await userRequest.post("/property", formData)
         .then((response) => {
-            localStorage.setItem("properties", JSON.stringify(response.data));
             return response.data;
         })
 }

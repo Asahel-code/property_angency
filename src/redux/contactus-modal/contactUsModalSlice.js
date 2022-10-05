@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setMessage } from '../message-modal/messageModalSlice';
+import { setErrorMessage } from '../message-modal/errorMessageModalSlice';
+import { setSuccessMessage } from '../message-modal/successMessageModalSlice';
 import ContactService from '../../services/ContactService';
 
 export const contactUs = createAsyncThunk(
@@ -7,7 +8,8 @@ export const contactUs = createAsyncThunk(
     async ({ name, email, subject, contactMessage }, thunkAPI) => {
         try {
             const response = await ContactService.contactUs(name, email, subject, contactMessage);
-            thunkAPI.dispatch(setMessage(response.message));
+            thunkAPI.dispatch(setSuccessMessage(response.message));
+            return response;
         } catch (error) {
             const message =
                 (error.response &&
@@ -15,7 +17,7 @@ export const contactUs = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }
@@ -26,7 +28,8 @@ export const propertySellsContact = createAsyncThunk(
     async ({ name, email, phoneNumber, contactMessage, titleDeadStatus }, thunkAPI) => {
         try {
             const response = await ContactService.propertySellContact(name, email, phoneNumber, contactMessage, titleDeadStatus);
-            thunkAPI.dispatch(setMessage(response.message));
+            thunkAPI.dispatch(setSuccessMessage(response.message));
+            return response;
         } catch (error) {
             const message =
                 (error.response &&
@@ -34,7 +37,7 @@ export const propertySellsContact = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.dispatch(setMessage(message));
+            thunkAPI.dispatch(setErrorMessage(message));
             return thunkAPI.rejectWithValue();
         }
     }

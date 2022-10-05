@@ -3,19 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {};
 
 const messageModalSlice = createSlice({
-  name: "message",
+  name: "errorMessage",
   initialState,
   reducers: {
-    setMessage: (state, action) => {
-      return { message: action.payload };
+    setErrorMessage: (state, action) => {
+      return { errorMessage: action.payload };
     },
-    clearMessage: () => {
-      return { message: "" };
+    clearErrorMessage: () => {
+      return { errorMessage: "" };
     },
   },
 });
 
 const { reducer, actions } = messageModalSlice;
 
-export const { setMessage, clearMessage } = actions
+export const { setErrorMessage, clearErrorMessage } = actions
 export default reducer;
