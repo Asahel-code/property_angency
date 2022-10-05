@@ -48,16 +48,18 @@ const Cards = () => {
         <div className="py-4">
             <div className="py-4 text-3xl font-bold text-center capitalize">Properties in Kenya</div>
             <div className="py-4 md:px-12 xs:px-6">
-                <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {propertyList && !propertyList.length ? (
-                        <EmptyCategory />
-                    ) : (propertyList && propertyList.map((item, index) => {
-                        return (
-                            <CardItem key={index} property={item} />
-                        )
-                    })
-                    )}
+                <div className="flex justify-center items-center">
+                    <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {propertyList && !propertyList.length ? (
+                            <EmptyCategory />
+                        ) : (propertyList && propertyList.map((item, index) => {
+                            return (
+                                <CardItem key={index} property={item} />
+                            )
+                        })
+                        )}
 
+                    </div>
                 </div>
                 <div className="flex justify-center items-center py-6">
                     {propertyList && propertyList.length > 10 &&

@@ -14,7 +14,7 @@ const CardItem = ({ property }) => {
   return (
     <div>
       <Link to={`/${property.category}/${property.subCategory ? property.subCategory : property.category}/${property.name}`}>
-        <Card className="w-72">
+        <Card className="w-full">
           <CardHeader color="blue" className="relative h-56 m-0 rounded-b-none">
             <img
               src={property.images[0]}

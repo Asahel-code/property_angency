@@ -4,10 +4,10 @@ import { HiHome } from "react-icons/hi";
 import { Link, useParams } from "react-router-dom";
 import CategoryItem from "../../components/CategoryItem";
 import EmptyCategory from "../../components/EmptyCategory";
-import Search from "../../components/Search";
 import ContactButtonSection from "../../components/ContactButtonSection";
 import Helmet from '../../components/Helemet';
 import { publicRequest } from '../../utils/requestHeader';
+import AdvertSpace from '../../components/AdvertSpace';
 import axios from 'axios';
 
 const Category = () => {
@@ -105,7 +105,7 @@ const Category = () => {
                         </div>
                     </div>
                     <div className="lg:block xs:hidden">
-                        <Search />
+                        <AdvertSpace/>
                     </div>
                 </div>
             </div>
