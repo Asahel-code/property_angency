@@ -3,20 +3,38 @@ import { useParams } from 'react-router-dom';
 import { Button, Carousel } from 'flowbite-react';
 import { BsTelephoneFill, BsWhatsapp, BsFillGeoFill } from "react-icons/bs";
 import UpdatePropertyModal from '../../modal/admin/UpdatePropertyModal';
-import { useSelector } from 'react-redux';
 import numberWithCommas from '../../utils/numberWithCommas';
+import { publicRequest } from '../../utils/requestHeader';
+import axios from 'axios';
+
 
 const ViewProperty = () => {
 
     const [modal, setModal] = useState(false);
     const [property, setProperty] = useState(undefined);
-    const { properties } = useSelector((state) => state.property);
 
     let { propertyName } = useParams();
 
     useEffect(() => {
-        setProperty(properties.find((e) => e.name === propertyName))
-    }, [propertyName, properties])
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/property", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setProperty(response.data.find((property) => property.name === propertyName))
+                localStorage.setItem("properties", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
+
+        return () => {
+            cancelToken.cancel()
+        }
+    }, [propertyName])
 
 
     const toggleModal = () => {

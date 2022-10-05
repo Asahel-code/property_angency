@@ -1,20 +1,37 @@
 import { useState, useEffect } from 'react';
 import { Carousel } from "flowbite-react";
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
 import numberWithCommas from '../../utils/numberWithCommas';
 import { BsGeoAlt } from "react-icons/bs";
 import Helmet from '../../components/Helemet';
+import { publicRequest } from '../../utils/requestHeader';
+import axios from 'axios';
 
-const ItemDetails = () => {
+const PropertyDetails = () => {
 
-    const { properties } = useSelector((state) => state.property);
     const [property, setProperty] = useState(undefined);
     let { propertyName } = useParams();
 
     useEffect(() => {
-        setProperty(properties.find((e) => e.name === propertyName))
-    }, [propertyName, properties])
+        const cancelToken = axios.CancelToken.source();
+        publicRequest.get("/property", { cancelToken: cancelToken.token })
+            .then((response) => {
+                setProperty(response.data.find((property) => property.name === propertyName))
+                localStorage.setItem("properties", JSON.stringify(response.data));
+            })
+            .catch(error => {
+                if (axios.isCancel(error)) {
+                    console.log("canceled")
+                }
+                else {
+
+                }
+            })
+
+        return () => {
+            cancelToken.cancel()
+        }
+    }, [propertyName])
 
     return (
         <Helmet title={propertyName}>
@@ -61,4 +78,4 @@ const ItemDetails = () => {
     )
 }
 
-export default ItemDetails
+export default PropertyDetails

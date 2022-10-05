@@ -6,7 +6,7 @@ import Login from "../pages/forms/Login"
 import Signup from "../pages/forms/Signup"
 import Category from "../pages/userpages/Category"
 import Home from "../pages/userpages/Home"
-import ItemDetails from "../pages/userpages/ItemDetails"
+import PropertyDetails from "../pages/userpages/PropertyDetails"
 import SubCategory from "../pages/userpages/SubCategory"
 import Contact from "../pages/userpages/Contact"
 import SearchResult from "../pages/userpages/SearchResult"
@@ -30,7 +30,7 @@ export const useRouter = () => [
     },
     {
         path: "/:category/:subCategory/:propertyName",
-        element: <ItemDetails />,
+        element: <PropertyDetails />,
     },
     {
         path: "/contact",
