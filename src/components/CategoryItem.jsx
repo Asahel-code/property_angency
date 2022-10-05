@@ -18,16 +18,16 @@ const CategoryItem = ({ catItem }) => {
 
     return (
         <div>
-            <div className="my-6 border grid xs:grid-cols-1 md:grid-cols-3 bg-white rounded-xl">
-                <div className="w-full pb-4 md:pr-4 sm:pr-0">
-                    <div className="mb-3 w-full">
+            <div className="my-2 border grid xs:grid-cols-1 md:grid-cols-3 bg-white rounded-r-md">
+                <div className="w-full pb-1 md:pr-4 sm:pr-0">
+                    <div className="mb-1 w-full">
                         <img className="w-full h-60" src={previewImg} alt="preview" />
                     </div>
-                    <div className="grid grid-cols-3 gap-4 w-full">
+                    <div className="grid grid-cols-3 gap-2 w-full">
                         {catItem.images.map((item, index) => {
                             return (
                                 <div className="cursor-pointer" key={index} onClick={() => setPreviewImg(item)}>
-                                    <img className="w-32 h-12" src={item} alt="hello" />
+                                    <img className="w-32 h-14" src={item} alt="hello" />
                                 </div>
                             )
                         })}

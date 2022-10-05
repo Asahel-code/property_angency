@@ -4,6 +4,7 @@ import ContactButtonSection from "../../components/ContactButtonSection";
 import Helemet from "../../components/Helemet";
 import CategoryItem from "../../components/CategoryItem";
 import EmptyCategory from "../../components/EmptyCategory";
+import AdvertSpace from '../../components/AdvertSpace';
 
 
 const SearchResult = () => {
@@ -18,7 +19,7 @@ const SearchResult = () => {
 
     return (
         <Helemet title="Search Results">
-            <div className="lg:mx-5 xs:mx-2 my-4">
+            <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                 <div className="col-span-2 mt-5">
                     <div className="text-center">
                         <h5 className="pb-8">Search results</h5>
@@ -41,6 +42,9 @@ const SearchResult = () => {
                             <ContactButtonSection />
                         </div>
                     </div>
+                </div>
+                <div className="lg:block xs:hidden">
+                    <AdvertSpace />
                 </div>
             </div>
         </Helemet>
