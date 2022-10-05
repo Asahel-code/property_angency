@@ -91,7 +91,7 @@ const ContactModal = ({ closeModal }) => {
                                 </div>
                                 <TextInput
                                     id="phoneNumber"
-                                    type="text"
+                                    type="number"
                                     placeholder="Input your phone number"
                                     required={true}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
