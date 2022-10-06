@@ -24,6 +24,10 @@ const Contact = () => {
             .unwrap()
             .then(() => {
                 setLoading(false);
+                setName("");
+                setEmail("");
+                setSuject("");
+                setContactMessage("");
                 toast.success("Your message has been sent successfully");
             })
             .catch((error) => {
