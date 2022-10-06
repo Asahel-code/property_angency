@@ -4,6 +4,7 @@ import Helmet from '../../components/Helemet';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactUs } from '../../redux/contactus-modal/contactUsModalSlice';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
 
@@ -14,8 +15,8 @@ const Contact = () => {
     const [isLoading, setLoading] = useState(false);
     const { errorMessage } = useSelector((state) => state.errorMessage);
 
-
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +30,7 @@ const Contact = () => {
                 setSuject("");
                 setContactMessage("");
                 toast.success("Your message has been sent successfully");
+                navigate('/');
             })
             .catch((error) => {
                 setLoading(false);
