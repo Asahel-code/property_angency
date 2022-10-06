@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import logo from '../assets/images/logo.png';
 import {
     MobileNav,
     Typography,
@@ -157,14 +158,16 @@ const Header = () => {
     );
 
     return (
-        <Navbar className="xs:py-2 lg:py-6">
+        <Navbar className="xs:py-2 lg:py-3">
             <div className="container mx-auto flex items-center justify-between">
                 <Typography
                     as="li"
                     variant="small"
                     className="mr-4 cursor-pointer py-1.5 font-bold text-lg"
                 >
-                    <Link to="/">Real Estate Agency</Link>
+                    <Link to="/">
+                        <img src={logo} alt="DMG Logo" width="50" hieght="50" />
+                    </Link>
                 </Typography>
                 {currentUser ?
                     (<div className="hidden lg:block">{adminNavList}</div>)

@@ -3,6 +3,7 @@ import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.png';
 
 const FooterSection = () => {
 
@@ -29,10 +30,10 @@ const FooterSection = () => {
                     <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                         <div>
                             <Footer.Brand
-                                href="https://flowbite.com"
-                                src="https://flowbite.com/docs/images/logo.svg"
-                                alt="Flowbite Logo"
-                                name="Real Estate Agency"
+                                href="/"
+                                src={logo}
+                                alt="DMG Logo"
+                                name="DMG Properties"
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
