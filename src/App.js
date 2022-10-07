@@ -4,6 +4,7 @@ import { useRouter } from "./utils/routes";
 import Header from "./components/Header";
 import FooterSection from "./components/FooterSection";
 import axios from 'axios';
+import Aos from 'aos';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
@@ -17,6 +18,7 @@ const App = () => {
   useEffect(() => {
     dispatch(clearSuccessMessage());
     dispatch(clearErrorMessage());
+    Aos.init({ duration: 2000 });
   },[dispatch]);
 
   axios.defaults.withCredentials = true;

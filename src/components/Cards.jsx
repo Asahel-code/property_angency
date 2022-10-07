@@ -45,7 +45,7 @@ const Cards = () => {
 
     return (
         <div className="md:absolute md:top-42 md:inset-x-12 xs:px-4">
-            <div>
+            <div data-aos="fade-up">
                 <div className="grid xs:grid-cols-1 md:grid-cols-3 gap-4">
                     {propertyList && !propertyList.length ? (
                         <EmptyCategory />

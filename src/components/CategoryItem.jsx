@@ -17,7 +17,7 @@ const CategoryItem = ({ catItem }) => {
     };
 
     return (
-        <div>
+        <div data-aos="fade-up">
             <div className="my-2 border grid xs:grid-cols-1 md:grid-cols-3 bg-white rounded-r-md">
                 <div className="w-full pb-1 md:pr-4 sm:pr-0">
                     <div className="mb-1 w-full">
