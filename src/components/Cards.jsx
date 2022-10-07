@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
-import { Pagination } from 'flowbite-react';
 import { publicRequest } from '../utils/requestHeader';
 import EmptyCategory from './EmptyCategory';
 import axios from 'axios';
@@ -12,14 +11,14 @@ const Cards = () => {
     // const propertiesMemo = useMemo(() => ({properties}), [properties])
 
     // default to first page
-    let currentPage = 1;
+    //let currentPage = 1;
 
     // default page size is 10
-    let pageSize = 10;
+    //let pageSize = 10;
 
 
     // calculate total pages
-    let totalPages = Math.ceil(propertyList.length / pageSize);
+    //let totalPages = Math.ceil(propertyList.length / pageSize);
 
     useEffect(() => {
         const cancelToken = axios.CancelToken.source();
@@ -45,31 +44,18 @@ const Cards = () => {
 
 
     return (
-        <div className="py-4">
-            <div className="py-4 text-3xl font-bold text-center capitalize">Properties in Kenya</div>
-            <div className="py-4 md:px-12 xs:px-6">
-                <div className="flex justify-center items-center">
-                    <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {propertyList && !propertyList.length ? (
-                            <EmptyCategory />
-                        ) : (propertyList && propertyList.map((item, index) => {
-                            return (
-                                <CardItem key={index} property={item} />
-                            )
-                        })
-                        )}
+        <div className="md:absolute md:top-42 md:inset-x-12 xs:px-4">
+            <div>
+                <div className="grid xs:grid-cols-1 md:grid-cols-3 gap-4">
+                    {propertyList && !propertyList.length ? (
+                        <EmptyCategory />
+                    ) : (propertyList && propertyList.map((item, index) => {
+                        return (
+                            <CardItem key={index} property={item} />
+                        )
+                    })
+                    )}
 
-                    </div>
-                </div>
-                <div className="flex justify-center items-center py-6">
-                    {propertyList && propertyList.length > 10 &&
-                        <Pagination
-                            currentPage={currentPage}
-                            // onPageChange={}
-                            showIcons={true}
-                            totalPages={totalPages}
-                        />
-                    }
                 </div>
             </div>
         </div>

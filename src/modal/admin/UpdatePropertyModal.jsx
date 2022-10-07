@@ -264,7 +264,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                             <Button
                                 type="submit"
                                 size="lg"
-                                style={{ width: "50%" }}>
+                                disabled={true} 
+                                style={{ width: "50%", backgroundColor: "#000", color: "#fff" }}>
                                 Update
                             </Button>
                         </div>

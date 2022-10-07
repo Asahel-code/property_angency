@@ -60,12 +60,12 @@ const RequestPasswordReset = () => {
                 />
               </div>
               <div className="my-5">
-                {isLoading ? <Button style={{ width: "100%" }}>
+                {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
                   <Spinner aria-label="Spinner button example" />
                   <span className="pl-3">
                     Sending...
                   </span>
-                </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
+                </Button> : <Button type="submit" style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>Submit</Button>}
               </div>
             </form>
           </div>

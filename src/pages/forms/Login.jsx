@@ -79,12 +79,12 @@ const Login = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
-                            {isLoading ? <Button style={{ width: "100%" }}>
+                            {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
                                 <Spinner aria-label="Spinner button example" />
                                 <span className="pl-3">
                                     Login in...
                                 </span>
-                            </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
+                            </Button> : <Button type="submit" style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>Submit</Button>}
                             <div className="flex items-center justify-start gap-2 text-sm">
                                 <div>
                                     <Link to="/admin/request-password-reset" className="hover:text-blue-600">Forgot your password?</Link>

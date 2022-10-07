@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import { BsTelephoneFill, BsEnvelope, BsWhatsapp, BsGeoAlt } from "react-icons/bs";
+import { BsTelephoneFill, BsEnvelope, BsWhatsapp, BsFillGeoAltFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import PhoneContactDetailsModal from '../modal/PhoneContactDetailsModal';
 import numberWithCommas from '../utils/numberWithCommas';
@@ -44,9 +44,9 @@ const CategoryItem = ({ catItem }) => {
                                     `${catItem.description.substring(0, 250)}...` : catItem.description
                                 }
                             </p>
-                            <div className="flex items-center gap-4">
-                                <p className="text-blue-700 md:text-lg xs:text-md">
-                                    <BsGeoAlt />
+                            <div className="flex items-center gap-2">
+                                <p className="text-gray-700 md:text-lg xs:text-md">
+                                    <BsFillGeoAltFill />
                                 </p>
                                 <p className="text-gray-500 text-sm">
                                     {catItem.location}

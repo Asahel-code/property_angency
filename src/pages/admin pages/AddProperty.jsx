@@ -275,12 +275,12 @@ const AddProperty = () => {
                                     </div>
                                 </div>
                             </div>
-                            {isLoading ? <Button size="lg" style={{ width: "300px" }}>
+                            {isLoading ? <Button disabled={true} size="lg" style={{ width: "300px", backgroundColor: "#000", color: "#fff" }}>
                                 <Spinner aria-label="Spinner button example" />
                                 <span className="pl-3">
                                     Adding...
                                 </span>
-                            </Button> : <Button type="submit" size="lg" style={{ width: "300px" }}>Add</Button>}
+                            </Button> : <Button type="submit" size="lg" style={{ width: "300px", backgroundColor: "#000", color: "#fff" }}>Add</Button>}
                         </div>
                     </div>
                 </form>

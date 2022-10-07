@@ -111,12 +111,12 @@ const Signup = () => {
                                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                                 />
                             </div>
-                            {isLoading ? <Button style={{ width: "100%" }}>
+                            {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
                                 <Spinner aria-label="Spinner button example" />
                                 <span className="pl-3">
                                     Creating...
                                 </span>
-                            </Button> : <Button type="submit" style={{ width: "100%" }}>Submit</Button>}
+                            </Button> : <Button type="submit" style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>Submit</Button>}
                             <div className="text-sm">
                                 Already created your account?,<Link className="hover:text-blue-600" to="/admin/login"> Sign in</Link>
                             </div>

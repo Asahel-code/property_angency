@@ -16,7 +16,7 @@ const ContactButtonSection = () => {
                     Planning or wish to sell your land?
                 </p>
                 <div className="flex justify-center items-center">
-                    <Button onClick={toggleModal}>Contact us</Button>
+                    <Button color="dark" onClick={toggleModal}>Contact us</Button>
                 </div>
             </Card>
             {modal && <ContactModal closeModal={toggleModal} />}

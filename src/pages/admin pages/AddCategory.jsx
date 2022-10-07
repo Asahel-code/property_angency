@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextInput, Label } from 'flowbite-react';
+import { Button, TextInput, Label, Spinner} from 'flowbite-react';
 import { BsFillPlusCircleFill, BsDashCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategory } from '../../redux/category-modal/categoryModalSlice';
@@ -12,6 +12,7 @@ const AddCategory = () => {
     const [subCategory, setSubCategory] = useState([
         { name: "" },
     ]);
+    const [isLoading, setLoading] = useState(false);
     const { successMessage } = useSelector((state) => state.successMessage);
 
     const dispatch = useDispatch();
@@ -35,14 +36,17 @@ const AddCategory = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
 
         dispatch(addCategory({ categoryName, subCategory }))
             .unwrap()
             .then(() => {
+                setLoading(false);
                 toast.success(successMessage);
                 navigate('/admin/dashboard');
             })
             .catch((error) => {
+                setLoading(false);
                 toast.error(`${categoryName} has been added successfully`);
                 console.log(error.message)
             })
@@ -96,9 +100,12 @@ const AddCategory = () => {
                             )
                         })}
                     </div>
-                    <Button type="submit" style={{ width: "100%" }}>
-                        Submit
-                    </Button>
+                    {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
+                                    <Spinner aria-label="Spinner button example" />
+                                    <span className="pl-3">
+                                        Adding...
+                                    </span>
+                                </Button> : <Button type="submit" style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>Submit</Button>}
                 </form>
             </div>
         </div>

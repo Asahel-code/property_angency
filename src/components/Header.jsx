@@ -6,7 +6,7 @@ import {
     IconButton,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
-import { Dropdown, Navbar } from "flowbite-react";
+import { Dropdown } from "flowbite-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user-modal/userModalSlice';
 import { publicRequest } from '../utils/requestHeader';
@@ -67,7 +67,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/admin/add-category" className="hover:text-blue-700 text-md">
+                <Link to="/admin/add-category" className="hover:text-black hover:font-bold text-md">
                     Add a category
                 </Link>
             </Typography>
@@ -83,9 +83,9 @@ const Header = () => {
                     label="Admin"
                 >
                     <Dropdown.Item>
-                        <Link to="/admin/dashboard" className="hover:text-blue-700 text-md">Dashboard</Link>
+                        <Link to="/admin/dashboard" className="hover:text-black hover:font-bold text-md">Dashboard</Link>
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={handleLogout} className="hover:text-blue-700 text-md">
+                    <Dropdown.Item onClick={handleLogout} className="hover:text-black hover:font-bold text-md">
                         logout
                     </Dropdown.Item>
                 </Dropdown>
@@ -104,7 +104,7 @@ const Header = () => {
                             color="blue-gray"
                             className="p-1 font-normal"
                         >
-                            <Link to={`/${cat.name}`} className=" hover:text-blue-700 text-md">
+                            <Link to={`/${cat.name}`} className=" hover:text-black hover:font-bold text-md">
                                 {cat.name}
                             </Link>
                         </Typography>)
@@ -118,11 +118,11 @@ const Header = () => {
                                     <Dropdown
                                         inline={true}
                                         label={cat.name}
-                                        className="hover:text-blue-700"
+                                        className="hover:text-black hover:font-bold"
                                     >
                                         {cat.subCategory.map((dropDownItem, index) => (
                                             <Dropdown.Item key={index}>
-                                                <Link className="hover:text-blue-700 text-md" to={`/${cat.name}/${dropDownItem.name}`}>{dropDownItem.name}</Link>
+                                                <Link className="hover:text-black hover:font-bold text-md" to={`/${cat.name}/${dropDownItem.name}`}>{dropDownItem.name}</Link>
                                             </Dropdown.Item>
                                         ))}
                                     </Dropdown>
@@ -140,7 +140,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/admin/login" className="hover:text-blue-700 text-md">
+                <Link to="/admin/login" className="hover:text-black hover:font-bold text-md">
                     About us
                 </Link>
             </Typography>
@@ -150,7 +150,7 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="contact" className="hover:text-blue-700 text-md">
+                <Link to="contact" className="hover:text-black hover:font-bold text-md">
                     Contact us
                 </Link>
             </Typography>
@@ -158,7 +158,7 @@ const Header = () => {
     );
 
     return (
-        <Navbar className="xs:py-2 lg:py-3">
+        <div className="bg-[#E2F4FE] px-4">
             <div className="container mx-auto flex items-center justify-between">
                 <Typography
                     as="li"
@@ -225,7 +225,7 @@ const Header = () => {
 
 
 
-        </Navbar>
+        </div>
     );
 }
 
