@@ -12,6 +12,7 @@ import Contact from "../pages/userpages/Contact"
 import SearchResult from "../pages/userpages/SearchResult"
 import RequestPasswordReset from "../pages/forms/RequestPasswordReset"
 import ResetPassword from "../pages/forms/ResetPassword"
+import AllProperties from "../pages/userpages/AllProperties"
 
 export const useRouter = () => [
     {
@@ -21,6 +22,10 @@ export const useRouter = () => [
     {
         path: "/search_results",
         element: <SearchResult />,
+    },
+    {
+        path: "/allProperties",
+        element: <AllProperties />,
     },
     {
         path: "/:category",

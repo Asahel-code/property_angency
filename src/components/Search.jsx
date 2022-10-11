@@ -65,9 +65,9 @@ const Search = () => {
                     <div className="md:px-24 xs:px-10">
                         <h1 className="capitalize lg:text-5xl xs:text-xl font-bold pb-4 lg:tracking-wide" data-aos="fade-down">Find a property that suit you</h1>
                         <p className="text-gray-500" data-aos="fade-down">What to find a property? We are ready to help you find one that suit your lifestyle and needs</p>
-                        <div className="py-4" data-aos="fade-down">
+                        <div className="md:py-8 xs:py-4" data-aos="fade-down">
                             <Button style={{ backgroundColor: "#000", color: "#fff" }}>
-                                <Link to="#">Get started</Link>
+                                <Link to="/allProperties">Get started</Link>
                             </Button>
                         </div>
                         <div className="grid grid-cols-3 gap-3 pb-5">
@@ -142,7 +142,7 @@ const Search = () => {
                                 <TextInput
                                     id="price"
                                     type="text"
-                                    placeholder="Price"
+                                    placeholder="Budget"
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                                 {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
@@ -163,7 +163,7 @@ const Search = () => {
                                 <TextInput
                                     id="price"
                                     type="text"
-                                    placeholder="Price"
+                                    placeholder="Budget"
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                                 {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>

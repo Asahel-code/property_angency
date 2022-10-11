@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Helmet = props => {
 
-    document.title = 'Property Agency | ' + props.title
+    document.title = `${props.title} | Property Agency`
 
    useEffect(() => {
         window.scrollTo(0,0)

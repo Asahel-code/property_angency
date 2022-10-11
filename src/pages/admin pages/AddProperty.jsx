@@ -13,6 +13,8 @@ const AddProperty = () => {
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [price, setPrice] = useState("");
+    const [rooms, setRooms] = useState();
+    const [landSize, setLandSize] = useState();
     const [categoryItem, setCategoryItem] = useState("");
     const [subCategoryItem, setSubCategoryItem] = useState("");
     const [images, setImages] = useState([]);
@@ -65,6 +67,8 @@ const AddProperty = () => {
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
+        formData.append('rooms', rooms);
+        formData.append('landSize', landSize);
         Object.values(images).forEach(image => {
             formData.append('images', image);
         });
@@ -192,6 +196,39 @@ const AddProperty = () => {
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </div>
+                        {categoryItem === "Real Estate" ?
+                            <div className="flex flex-col gap-2">
+                                <div className="mt-2 block">
+                                    <Label
+                                        htmlFor="no_rooms"
+                                        value="NUmber of rooms"
+                                    />
+                                </div>
+                                <TextInput
+                                    id="no_rooms"
+                                    type="number"
+                                    placeholder="4"
+                                    required={true}
+                                    onChange={(e) => setRooms(e.target.value)}
+                                />
+                            </div>
+                            : categoryItem === "Land" &&
+                            <div className="flex flex-col gap-2">
+                                <div className="mt-2 block">
+                                    <Label
+                                        htmlFor="land_size"
+                                        value="Size of land (Acers)"
+                                    />
+                                </div>
+                                <TextInput
+                                    id="land_size"
+                                    type="text"
+                                    placeholder="1.2"
+                                    required={true}
+                                    onChange={(e) => setLandSize(e.target.value)}
+                                />
+                            </div>
+                        }
                         <div className="flex flex-col gap-2">
                             <div className="mt-2 block">
                                 <Label

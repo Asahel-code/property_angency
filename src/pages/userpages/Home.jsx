@@ -3,6 +3,7 @@ import Helmet from "../../components/Helemet";
 import Search from "../../components/Search";
 import { BsDashLg } from "react-icons/bs";
 import { CgArrowLongRight } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -17,13 +18,13 @@ const Home = () => {
                         </div>
                         <div className="flex justify-between py-4">
                             <h3 className="font-bold md:text-3xl xs:text-xl">Our popular properties</h3>
-                            <div className="flex items-center gap-2 cursor-pointer">
+                            <Link to="/allProperties" className="flex items-center gap-2 cursor-pointer">
                                 <span className="capitalize">Expore all</span>
                                 <span><CgArrowLongRight /></span>
-                            </div>
+                            </Link>
                         </div>
                     </div>
-                    <Cards />
+                    <Cards id="popular" />
                 </div>
             </div>
         </Helmet>

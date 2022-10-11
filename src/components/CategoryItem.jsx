@@ -3,6 +3,8 @@ import { BsTelephoneFill, BsEnvelope, BsWhatsapp, BsFillGeoAltFill } from "react
 import { Link } from 'react-router-dom';
 import PhoneContactDetailsModal from '../modal/PhoneContactDetailsModal';
 import numberWithCommas from '../utils/numberWithCommas';
+import { FaBed } from "react-icons/fa";
+import { GiIsland } from "react-icons/gi";
 
 const CategoryItem = ({ catItem }) => {
     const [previewImg, setPreviewImg] = useState(catItem.images[0]);
@@ -44,6 +46,25 @@ const CategoryItem = ({ catItem }) => {
                                     `${catItem.description.substring(0, 250)}...` : catItem.description
                                 }
                             </p>
+                            {catItem.category === "Real Estate" ?
+                                <div className="flex items-center gap-2 py-1">
+                                    <p className="text-gray-800 text-lg font-semibold py-1">
+                                        <FaBed />
+                                    </p>
+                                    <p className="text-gray-800 text-lg font-semibold">
+                                        {catItem.rooms} bed
+                                    </p>
+                                </div>
+                                : catItem.category === "Land" &&
+                                <div className="flex items-center gap-2 py-1">
+                                    <p className="text-gray-800 py-1 text-lg font-semibold">
+                                        <GiIsland />
+                                    </p>
+                                    <p className="text-gray-800 text-lg font-semibold">
+                                        {catItem.landSize} arces
+                                    </p>
+                                </div>
+                            }
                             <div className="flex items-center gap-2">
                                 <p className="text-gray-700 md:text-lg xs:text-md">
                                     <BsFillGeoAltFill />

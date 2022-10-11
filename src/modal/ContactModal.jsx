@@ -119,7 +119,7 @@ const ContactModal = ({ closeModal }) => {
                                 </Label>
                             </div>
                             <div className="w-full">
-                                {isLoading ? <Button style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
+                                {isLoading ? <Button disabled={true} style={{ width: "100%", backgroundColor: "#000", color: "#fff" }}>
                                     <Spinner aria-label="Spinner button example" />
                                     <span className="pl-3">
                                         Sending...

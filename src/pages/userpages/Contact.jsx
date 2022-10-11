@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { contactUs } from '../../redux/contactus-modal/contactUsModalSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 
 const Contact = () => {
 
@@ -121,14 +122,19 @@ const Contact = () => {
                         </form>
                     </div>
                 </div>
-                <div className="contact__side__content flex justify-center items-center">
-                    <div className="md:w-3/5 xs:w-full px-10 py-24">
-                        <h2 className="pb-5 md:text-3xl xs:text-2xl font-bold text-center">Real Estate Agency</h2>
-                        <p className="md:text-lg xs:text:md text-justify">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book.
+                <div className="contact__side__content flex justify-center items-center bg-[#E2F4FE]">
+                    <div className="md:w-4/5 xs:w-full px-10 py-24">
+                        <div className="flex gap-2 justify-center items-center pb-5" data-aos="fade-down">
+                            <img src={logo} alt="DMG Logo" width="50" hieght="40" />
+                            <h2 className="md:text-xl xs:text-lg font-bold">DMG Properties</h2>
+                        </div>
+
+                        <p className="md:text-lg xs:text:md text-justify" data-aos="fade-up">
+                            Our business is built off of close relationships and
+                            we are glad that we are able to share our positive real
+                            estate experiences with our clients. You can reach to use
+                            through our social media link or send a message using This
+                            form, we will be able to see it and reach out to you.
                         </p>
                     </div>
                 </div>
