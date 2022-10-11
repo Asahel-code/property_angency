@@ -50,8 +50,6 @@ const PropertyDetails = () => {
                                     />
                                 )
                             })}
-
-
                         </Carousel>
                     }
                 </div>

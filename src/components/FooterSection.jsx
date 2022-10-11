@@ -1,4 +1,5 @@
 import { Footer } from 'flowbite-react';
+import { useLocation } from 'react-router-dom';
 import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { ImQuotesLeft } from "react-icons/im";
 import logo from '../assets/images/logo.png';
@@ -21,9 +22,12 @@ const FooterSection = () => {
         handSocialMediaLinks('https://www.facebook.com');
     };
 
+    const location = useLocation();
+
+    const footerStyling = "md:px-10 xs:px-4 pb-8"
     return (
         <div className="bg-black text-white">
-            <div className="md:px-10 xs:px-4 pb-8 md:pt-64 xs:pt-10">
+            <div className={location.pathname !== "/" ? `${footerStyling} pt-8` : `${footerStyling} md:pt-64 xs:pt-8`}>
                 <div className="w-full">
                     <div className="grid md:grid-cols-2 xs:grid-cols-1 lg:gap-96 sm:gap-60">
                         <div>
