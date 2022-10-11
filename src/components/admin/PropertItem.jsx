@@ -41,7 +41,8 @@ const PropertItem = () => {
         dispatch(deleteProperty(propertyName))
             .unwrap()
             .then(() => {
-                toast.error('Property deleated successfully!!');
+                // eslint-disable-next-line no-restricted-globals
+                toast.error('Property deleted successfully!!');
             })
 
     }

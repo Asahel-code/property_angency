@@ -55,7 +55,7 @@ const Category = () => {
                             </Breadcrumb>
                         </div>
                         <div className="text-center">
-                            <h5 className="pb-8 text-2xl">{category} in Kenya</h5>
+                            <h5 className="pb-8 md:text-3xl xs:text-2xl font-bold">{category} in Kenya</h5>
                         </div>
                         {/* <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center w-full">

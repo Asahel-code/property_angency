@@ -60,7 +60,7 @@ const SubCategory = () => {
                             </Breadcrumb>
                         </div>
                         <div className="text-center">
-                            <h5 className="pb-8 text-2xl">{subCategory} in Kenya</h5>
+                            <h5 className="pb-8 md:text-3xl xs:text-2xl font-bold">{subCategory} in Kenya</h5>
                         </div>
                         <div>
                             {subCategoryItems && !subCategoryItems.length ? (

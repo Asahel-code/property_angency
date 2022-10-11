@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import logo from '../assets/images/logo.png';
+import avatar from '../assets/images/admin_avatar1.jpg';
 import {
     MobileNav,
     Typography,
     IconButton,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
-import { Dropdown } from "flowbite-react";
+import { Dropdown, Avatar } from "flowbite-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/user-modal/userModalSlice';
 import { publicRequest } from '../utils/requestHeader';
@@ -46,7 +47,7 @@ const Header = () => {
             cancelToken.cancel()
         }
 
-        
+
     }, []);
 
     const handleLogout = () => {
@@ -67,24 +68,27 @@ const Header = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <Link to="/admin/add-category" className="hover:text-black hover:font-bold text-md">
-                    Add a category
-                </Link>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
                 <Dropdown
                     inline={true}
                     arrowIcon={false}
-                    label="Admin"
+                    label={<Avatar alt="Admin" img={avatar} rounded={true} className="bg-[#E2F4FE]" />}
                 >
+                    <Dropdown.Header>
+                        <span className="block text-md text-black font-bold capitalize">
+                            {currentUser && currentUser.username}
+                        </span>
+                    </Dropdown.Header>
                     <Dropdown.Item>
-                        <Link to="/admin/dashboard" className="hover:text-black hover:font-bold text-md">Dashboard</Link>
+                        <Link to="/admin/dashboard" className="hover:text-black hover:font-bold text-md">
+                            Dashboard
+                        </Link>
                     </Dropdown.Item>
+                    <Dropdown.Item>
+                        <Link to="/admin/add-category" className="hover:text-black hover:font-bold text-md">
+                            Add a category
+                        </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
                     <Dropdown.Item onClick={handleLogout} className="hover:text-black hover:font-bold text-md">
                         logout
                     </Dropdown.Item>
@@ -212,7 +216,7 @@ const Header = () => {
                     )}
                 </IconButton>
             </div>
-            {currentUser ? (
+            {currentUser && currentUser.isAdmin ? (
                 <MobileNav open={openNav}>
                     {adminNavList}
                 </MobileNav>

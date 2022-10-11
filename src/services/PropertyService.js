@@ -23,7 +23,7 @@ const addProperty = async (formData) => {
         })
 }
 
-const updateProperty = async (propertyName, formData) => {
+const updateProperty = async (formData, propertyName) => {
     return await userRequest.patch(`/property/${propertyName}`, formData)
         .then((response) => {
             localStorage.setItem("properties", JSON.stringify(response.data));

@@ -42,7 +42,7 @@ const AllProperties = () => {
                 <div className="grid lg:grid-cols-3 xs:grid-cols-1 gap-5 lg:mx-5 xs:mx-2 my-4">
                     <div className="col-span-2 pt-2">
                         <div className="text-center">
-                            <h5 className="pb-8 text-2xl">Properties in Kenya</h5>
+                            <h5 className="pb-8 md:text-3xl xs:text-2xl font-bold">Properties in Kenya</h5>
                         </div>
                         {/* <div className="flex justify-between items-center">
                         <div className="flex gap-2 items-center w-full">

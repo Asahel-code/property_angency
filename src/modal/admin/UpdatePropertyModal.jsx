@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, TextInput, Label, Textarea, Avatar, Select, FileInput } from 'flowbite-react';
-import { useSelector } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
+import { Modal, Button, TextInput, Label, Textarea, Avatar, Select, FileInput, Spinner } from 'flowbite-react';
+import { useSelector, useDispatch } from 'react-redux';
+import Helmet from '../../components/Helemet';
+import { updateProperty } from '../../redux/property-modal/propertyModalSlice';
+import { toast } from 'react-toastify';
 
 
 const UpdatePropertyModal = ({ closeModal, property }) => {
@@ -15,8 +18,13 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
     const [images, setImages] = useState([]);
     const [phoneNumberContact, setPhoneNumberContact] = useState("");
     const [whatsappContact, setWhatsappContact] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     const { category } = useSelector((state) => state.category);
+    const { errorMessage } = useSelector((state) => state.errorMessage);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setName(property.name)
@@ -27,6 +35,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
         setSubCategoryItem(property.subCategory)
         setPhoneNumberContact(property.phoneNumberContact)
         setWhatsappContact(property.whatsappContact)
+        setImages(property.images)
     }, [property])
 
     let subCategory = []
@@ -42,6 +51,8 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
+        let propertyName = property.name;
 
         const formData = new FormData();
         formData.append('name', name);
@@ -56,9 +67,22 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
         formData.append('phoneNumberContact', phoneNumberContact);
         formData.append('whatsappContact', whatsappContact);
 
+        dispatch(updateProperty({formData, propertyName}))
+            .unwrap()
+            .then(() => {
+                toast.success(`${propertyName} property has been updated successfully`);
+                navigate("/admin/dashboard");
+                setLoading(false);
+            })
+            .catch((error) => {
+                setLoading(false);
+                toast.error(errorMessage);
+                console.log(error.message);
+            })
     }
+
     return (
-        <div>
+        <Helmet title="Update property">
             <Modal
                 show={true}
                 size="5xl"
@@ -254,25 +278,26 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                             return (
                                                 <Avatar
                                                     key={index}
-                                                    img={URL.createObjectURL(image)}
+                                                    img={image}
                                                 />
                                             )
                                         })
                                     )}
                                 </div>
                             </div>
-                            <Button
-                                type="submit"
-                                size="lg"
-                                disabled={true} 
-                                style={{ width: "50%", backgroundColor: "#000", color: "#fff" }}>
-                                Update
-                            </Button>
+                            {isLoading ? <Button disabled={true} size="lg" style={{ width: "50%", backgroundColor: "#000", color: "#fff" }}>
+                                <Spinner aria-label="Spinner button example" />
+                                <span className="pl-3">
+                                    Sending...
+                                </span>
+                            </Button> : <Button type="submit" size="lg" style={{ width: "50%", backgroundColor: "#000", color: "#fff" }}>Submit</Button>
+                            }
                         </div>
                     </Modal.Body>
                 </form>
             </Modal>
-        </div>
+        </Helmet>
+
     )
 }
 

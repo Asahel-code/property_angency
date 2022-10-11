@@ -49,7 +49,7 @@ const Cards = () => {
                 <div className="grid xs:grid-cols-1 md:grid-cols-3 gap-4">
                     {propertyList && !propertyList.length ? (
                         <EmptyCategory />
-                    ) : (propertyList && propertyList.map((item, index) => {
+                    ) : (propertyList && propertyList.slice(0,3).map((item, index) => {
                         return (
                             <CardItem key={index} property={item} />
                         )

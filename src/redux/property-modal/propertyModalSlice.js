@@ -65,9 +65,9 @@ export const addProperty = createAsyncThunk(
 
 export const updateProperty = createAsyncThunk(
     "propertyModalSlice/updateProperty",
-    async ({ formData, name }, thunkAPI) => {
+    async ({ formData, propertyName }, thunkAPI) => {
         try {
-            const data = await PropertyService.updateProperty(formData, name);
+            const data = await PropertyService.updateProperty(formData, propertyName);
             return {properties : data};
         } catch (error) {
             const message =
