@@ -39,7 +39,7 @@ const CardItem = ({ property }) => {
                   <FaBed />
                 </Typography>
                 <Typography className="text-gray-500 text-sm">
-                {property.rooms} bed
+                {property.rooms} bedroom
                 </Typography>
               </div>
               :property.category === "Land" &&

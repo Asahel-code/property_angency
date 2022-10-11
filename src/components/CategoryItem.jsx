@@ -52,7 +52,7 @@ const CategoryItem = ({ catItem }) => {
                                         <FaBed />
                                     </p>
                                     <p className="text-gray-800 text-lg font-semibold">
-                                        {catItem.rooms} bed
+                                        {catItem.rooms} bedroom
                                     </p>
                                 </div>
                                 : catItem.category === "Land" &&

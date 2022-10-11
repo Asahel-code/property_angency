@@ -63,7 +63,7 @@ const PropertyDetails = () => {
                                 <FaBed />
                             </p>
                             <p className="text-gray-800 text-lg font-semibold">
-                                {property && property.rooms} bed
+                                {property && property.rooms} bedroom
                             </p>
                         </div>
                         : property && property.category === "Land" &&
