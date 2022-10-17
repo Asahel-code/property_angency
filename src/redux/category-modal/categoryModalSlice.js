@@ -5,25 +5,6 @@ import CategoryService from '../../services/CategoryService';
 
 const category = JSON.parse(localStorage.getItem("category"));
 
-export const getCategories = createAsyncThunk(
-    "categoryModalSlice/getCategories",
-    async (thunkAPI) => {
-        try {
-            const data = await CategoryService.getCategories();
-            return {category: data};
-        } catch (error) {
-            const message =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-            thunkAPI.dispatch(setErrorMessage(message));
-            return thunkAPI.rejectWithValue();
-        }
-    }
-);
-
 export const addCategory = createAsyncThunk(
     "categoryModalSlice/addCategory",
     async ({ categoryName, subCategory }, thunkAPI) => {
@@ -53,14 +34,6 @@ const categorySlice = createSlice({
     name: "category",
     initialState,
     extraReducers: {
-        [getCategories.fulfilled]: (state, action) => {
-            state.isLoaded = true;
-            state.category = action.payload.category;
-        },
-        [getCategories.rejected]: (state, action) => {
-            state.isLoaded = false;
-            state.category = null;
-        },
         [addCategory.fulfilled]: (state, action) => {
             state.isLoaded = true;
             state.category = action.payload.category;

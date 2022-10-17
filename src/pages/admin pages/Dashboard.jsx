@@ -8,14 +8,18 @@ import Helmet from '../../components/Helemet';
 const Dashboard = () => {
 
     const { user: currentUser } = useSelector((state) => state.auth);
+    const { isLoggedIn } = useSelector((state) => state.auth);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!currentUser.isAdmin) {
+        if(!isLoggedIn){
+            navigate('/admin/login');
+        }
+        else if (!currentUser.isAdmin) {
             navigate('/');
         }
-    }, [navigate, currentUser.isAdmin]);
+    }, [navigate, currentUser.isAdmin, isLoggedIn]);
 
     
     return (

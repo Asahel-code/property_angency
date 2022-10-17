@@ -263,6 +263,7 @@ const UpdatePropertyModal = ({ closeModal, property }) => {
                                     </div>
                                     <FileInput
                                         id="images"
+                                        accept="image/*"
                                         multiple
                                         helperText="Upload at least 3 photos of a property"
                                         onChange={(e) => setImages(pre => [...e.target.files])}

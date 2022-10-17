@@ -10,6 +10,8 @@ const FooterSection = () => {
         window.open(link, "_blank");
     };
 
+    let datenow = new Date();
+
     const handleInstagram = () => {
         handSocialMediaLinks('https://www.instagram.com');
     };
@@ -51,7 +53,7 @@ const FooterSection = () => {
                     <div className="w-full sm:flex sm:items-center sm:justify-between">
                         <Footer.Copyright
                             by="DMG Properties"
-                            year={2022}
+                            year={datenow.getFullYear()}
                         />
                         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center text-gray-400">
                             <div className="hover:text-white cursor-pointer" onClick={handleFacebook}>
